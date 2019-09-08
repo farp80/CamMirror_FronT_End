@@ -6,11 +6,18 @@ export class Navbar extends React.Component {
 		return (
 			<nav className="navbar navbar-light bg-light mb-3">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1">Mirror Me</span>
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
+					<Link to="/loginsignup">
+						<span className="navbar-brand mb-0 h1">
+							<i className="fas fa-lock mr-1" />
+							Log in
+						</span>
+					</Link>
+
+					<Link to="/membership">
+						<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
 					</Link>
 				</div>
 			</nav>

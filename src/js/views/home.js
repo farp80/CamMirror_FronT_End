@@ -5,15 +5,16 @@ import "../../styles/home.scss";
 export class Home extends React.Component {
 	render() {
 		return (
-			<div className="text-center mt-5">
-				<h1>Hello Rigo!</h1>
-				<p>
-					<img src={rigoImage} />
-				</p>
-				<a href="#" className="btn btn-success">
-					If you see this green button, bootstrap is working
-				</a>
-			</div>
+			<React.Fragment>
+				<div className="container">
+					<div className="jumbotron jumbotron-fluid">
+						<div className="container">
+							<h1 className="display-4 text-center">Welcome!</h1>
+							<p className="lead text-center">This is a where perfect selfies are made.</p>
+						</div>
+					</div>
+				</div>
+			</React.Fragment>
 		);
 	}
 }
