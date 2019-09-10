@@ -32,7 +32,6 @@ export class Navbar extends React.Component {
 							Log in
 						</span>
 					</Link>
-
 					<Link to="/membership">
 						<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
 					</Link>

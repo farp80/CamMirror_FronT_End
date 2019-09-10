@@ -33,6 +33,9 @@ export class LoginSignup extends React.Component {
 						<button type="submit" className="btn btn-primary">
 							Login
 						</button>
+						<Link to="/">
+							<a href="#"> home</a>
+						</Link>
 					</form>
 				</div>
 			</React.Fragment>
