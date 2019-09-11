@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 
-export class LoginSignup extends React.Component {
+export class Login extends React.Component {
 	constructor() {
 		super();
 		this.state = {

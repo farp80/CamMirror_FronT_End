@@ -1,6 +1,7 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
+import { Link } from "react-router-dom";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 export class Home extends React.Component {
@@ -37,12 +38,14 @@ export class Home extends React.Component {
 							<div className="col-sm-6">
 								<div className="card">
 									<div className="card-body">
-										<h5 className="card-title">Try For Free</h5>
+										<h5 className="card-title">Signup For Free</h5>
 										<p className="card-text">
 											Want to see the possibilites? Start your free trial today.
 										</p>
 										<button className="btn btn-primary">
-											<i className="fas fa-camera" />
+											<Link to="/signup">
+												<i className="fas fa-camera" />
+											</Link>
 										</button>
 									</div>
 								</div>

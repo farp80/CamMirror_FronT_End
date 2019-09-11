@@ -9,7 +9,8 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
-import { LoginSignup } from "./component/LoginSignup";
+import { Login } from "./component/login";
+import { Signup } from "./component/signup";
 
 //create your first component
 export class Layout extends React.Component {
@@ -26,7 +27,8 @@ export class Layout extends React.Component {
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
-							<Route exact path="/loginsignup" component={LoginSignup} />
+							<Route exact path="/login" component={Login} />
+							<Route exact path="/signup" component={Signup} />
 							<Route path="/single/:theid" component={Single} />
 							<Route render={() => <h1>Not found!</h1>} />
 						</Switch>
