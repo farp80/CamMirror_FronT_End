@@ -26,7 +26,7 @@ export class Navbar extends React.Component {
 					<span className="navbar-brand mb-0 h1">Mirror Me</span>
 				</Link>
 				<div className="ml-auto">
-					<Link to="/loginsignup">
+					<Link to="/login">
 						<span className="navbar-brand mb-0 h1">
 							<i className="fas fa-lock mr-1" />
 							Log in
