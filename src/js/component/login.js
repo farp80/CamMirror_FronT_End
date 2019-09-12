@@ -46,12 +46,14 @@ export class Login extends React.Component {
 					<Context.Consumer>
 						{({ store, actions }) => {
 							return (
-								<button
-									type="submit"
-									className="btn btn-primary"
-									onClick={() => actions.onLogin(this.state.email, this.state.password)}>
-									{"Login"}
-								</button>
+								<Link to="/profile">
+									<button
+										type="submit"
+										className="btn btn-primary"
+										onClick={() => actions.onLogin(this.state.email, this.state.password)}>
+										{"Login"}
+									</button>
+								</Link>
 							);
 						}}
 					</Context.Consumer>
