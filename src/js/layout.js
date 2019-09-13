@@ -11,6 +11,7 @@ import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
 import { Profile } from "./component/profile";
+import { About } from "./component/about";
 import { Signup } from "./component/signup";
 
 //create your first component
@@ -30,6 +31,7 @@ export class Layout extends React.Component {
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/profile" component={Profile} />
+							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />
 							<Route path="/single/:theid" component={Single} />
 							<Route render={() => <h1>Not found!</h1>} />
