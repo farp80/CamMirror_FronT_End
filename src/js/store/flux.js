@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			errorStatus: "",
 			demo: [
 				{
 					title: "FIRST",
@@ -15,12 +16,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			onLogin: (email, password) => {
+			onSignup: (email, password) => {
 				let settings = {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-db0eec2e-6296-42b2-acf9-c6eef2c1afa7.ws-us1.gitpod.io/login", {
+				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/signup", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -31,7 +32,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
-						console.log("TOKEN: " + data.jwt);
+						if (data.msg == "User Already Exists") {
+							setStore({ errorStatus: data.msg });
+						}
 					})
 					.catch(error => {
 						console.log(error);
