@@ -23,7 +23,7 @@ export class Navbar extends React.Component {
 		return (
 			<nav className="navbar navbar-light bg-light mb-3">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">Mirror Me</span>
+					<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
 				</Link>
 				<div className="ml-auto">
 					<Link to="/login">
