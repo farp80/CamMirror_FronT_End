@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
+import SignUp from "../component/signup.js";
+import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 
 export class Login extends React.Component {
@@ -46,7 +48,7 @@ export class Login extends React.Component {
 					<Context.Consumer>
 						{({ store, actions }) => {
 							return (
-								<Link to="/profile">
+								<Link to="/profile/<int:user_id>">
 									<button
 										type="submit"
 										className="btn btn-primary"

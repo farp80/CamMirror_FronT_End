@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 import "../../styles/home.scss";
 
 export class Signup extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			first_name: "",
+			last_name: "",
 			email: "",
 			password: ""
 		};
@@ -28,6 +31,28 @@ export class Signup extends React.Component {
 						<React.Fragment>
 							<div className="signup">
 								<div className="form-group">
+									<label forHtml="exampleInputName1">First Name</label>
+									<input
+										onChange={e => this.setState({ first_name: e.target.value })}
+										type="first_name"
+										className="form-control"
+										id="exampleInputName1"
+										aria-describedby="emailHelp"
+										placeholder="First Name"
+									/>
+								</div>
+								<div className="form-group">
+									<label forHtml="exampleInputName2">Last Name</label>
+									<input
+										onChange={e => this.setState({ last_name: e.target.value })}
+										type="last_name"
+										className="form-control"
+										id="exampleInputName2"
+										aria-describedby="emailHelp"
+										placeholder="Last Name"
+									/>
+								</div>
+								<div className="form-group">
 									<label forHtml="exampleInputEmail1">Email address</label>
 									<input
 										onChange={e => this.setState({ email: e.target.value })}
@@ -35,11 +60,8 @@ export class Signup extends React.Component {
 										className="form-control"
 										id="exampleInputEmail1"
 										aria-describedby="emailHelp"
-										placeholder="Enter email"
+										placeholder="Email"
 									/>
-									<small id="emailHelp" className="form-text text-muted">
-										{"We will never share your email with anyone else."}
-									</small>
 								</div>
 								<div className="form-group">
 									<label forHtml="exampleInputPassword1">{"Create Password"}</label>
@@ -51,21 +73,24 @@ export class Signup extends React.Component {
 										placeholder="Password"
 									/>
 								</div>
-								<div className="form-group form-check">
-									<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-									<label className="form-check-label" forHtml="exampleCheck1">
-										{"Check me out"}
-									</label>
-								</div>
+
 								<button
 									type="submit"
 									className="btn btn-primary"
-									onClick={() => actions.onSignup(this.state.email, this.state.password)}>
+									onClick={() =>
+										actions.onSignup(
+											this.state.first_name,
+											this.state.last_name,
+											this.state.email,
+											this.state.password
+										)
+									}>
 									{"Signup"}
 								</button>
+
 								{this.onErrorHandling(store.errorStatus)}
 								<Link to="/">
-									<a href="#"> {"home"}</a>
+									<a href="#"> {"Go Back Home"}</a>
 								</Link>
 							</div>
 						</React.Fragment>
