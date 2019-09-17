@@ -215,6 +215,9 @@ export class Membership extends React.Component {
 															<button type="button" className="btn">
 																Cancel
 															</button>
+															<button type="button" className="btn btn-danger">
+																Cancel-Membership
+															</button>
 														</div>
 													</fieldset>
 												</form>

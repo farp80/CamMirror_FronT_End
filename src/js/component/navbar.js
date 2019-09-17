@@ -38,6 +38,12 @@ export class Navbar extends React.Component {
 					<Link to="/membership">
 						<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
 					</Link>
+					<Link to="/login">
+						<span className="navbar-brand mb-0 h1">
+							<i className="fas fa-sign-out-alt" />
+							Log out
+						</span>
+					</Link>
 				</div>
 			</nav>
 		);

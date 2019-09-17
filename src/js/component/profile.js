@@ -1,6 +1,8 @@
 import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
+import Avatar from "react-avatar-edit";
+import ProfilePic from "../component/profilePic.js";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 export class Profile extends React.Component {
