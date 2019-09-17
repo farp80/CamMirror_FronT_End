@@ -1,10 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: [],
-			users: []
+			token: []
 		},
 		actions: {
+			logOut: () => {
+				store.token = null;
+			},
+
+			delete: elementId => {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/user/" + elementId, {
+					method: "DELETE",
+					headers: { "Content-Type": "Application/json" }
+				}).catch(error => {
+					//console.log(error);
+				});
+			},
+
 			onSignup: (first_name, last_name, email, password) => {
 				let settings = {
 					first_name: first_name,
@@ -12,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/signup", {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/signup", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -25,20 +37,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
-							history.push("/login");
 						}
+					})
+					.then(() => {
+						history.push("/login");
 					})
 					.catch(error => {
 						console.log(error);
 					});
 			},
 
-			onLogin: (email, password) => {
+			onLogin: (email, password, elementId) => {
 				let settings = {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/login", {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/login", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -48,26 +62,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => {
 						return response.json();
 					})
+
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
 						}
 					})
-					.catch(
-						error => {
-							// console.log(error);
-						},
+					.then(() => {
+						history.push("/profile/user" + elementId);
+					})
+					.then(() => {
+						token = store.token = token;
+					})
 
-						fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/login")
-							.then(resp => resp.json())
-							.then(data => {
-								let store = getStore();
-
-								setStore({ users: data });
-								history.push("/profile/<int:user_id>");
-							})
-							.catch(error => {})
-					);
+					.catch(error => {
+						// console.log(error);
+					});
 			}
 		}
 	};
