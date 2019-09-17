@@ -2,6 +2,14 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import Avatar from "react-avatar-edit";
+/*import Konva from "konva/lib/Core";
+import { Rect } from "konva/lib/shapes/Rect";
+import { Circle } from "konva/lib/shapes/Circle";
+import { Image } from "konva/lib/shapes/Image";
+import { Path } from "konva/lib/shapes/Path";
+import { DragAndDrop } from "konva/lib/DragAndDrop";
+import { Animation } from "konva/lib/Animation";*/
+
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 export class ProfilePic extends React.Component {
@@ -24,6 +32,12 @@ export class ProfilePic extends React.Component {
 		this.setState({ preview });
 	}
 
+	onBeforeFileLoad(elem) {
+		if (elem.target.files[0].size > 71680) {
+			alert("File is too big!");
+			elem.target.value = "";
+		}
+	}
 	render() {
 		return (
 			<React.Fragment>

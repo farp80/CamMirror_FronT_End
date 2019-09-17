@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "react-avatar-edit";
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -38,6 +39,7 @@ export class Layout extends React.Component {
 							<Route exact path="/signup" component={Signup} />
 							<Route render={() => <h1>Not found!</h1>} />
 						</Switch>
+
 						<Footer />
 					</ScrollToTop>
 				</BrowserRouter>
