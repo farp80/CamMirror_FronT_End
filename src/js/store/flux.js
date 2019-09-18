@@ -5,6 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			logOut: () => {
+				let store = this.state.store;
+				setStore({ token: data });
 				store.token = null;
 			},
 
@@ -15,6 +17,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).catch(error => {
 					//console.log(error);
 				});
+			},
+
+			updateProfile: (first_name, last_name, email, password, elementId) => {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/user/" + elementId, {
+					method: "PUT",
+					headers: { "Content-Type": "Application/json" },
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						password: password
+					})
+				});
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/user")
+					.then(resp => resp.json())
+					.then(data => {
+						//console.log(data);
+						let store = this.state.store;
+						setStore({ token: data });
+						history.push("/profile/" + elementId);
+					})
+					.catch(error => {
+						//console.log(error);
+					});
 			},
 
 			onSignup: (first_name, last_name, email, password) => {
@@ -39,15 +65,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ errorStatus: data.msg });
 						}
 					})
-					.then(() => {
-						history.push("/login");
-					})
 					.catch(error => {
 						console.log(error);
 					});
 			},
 
-			onLogin: (email, password, elementId) => {
+			onLogin: (email, password) => {
 				let settings = {
 					email: email,
 					password: password
@@ -69,10 +92,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(() => {
-						history.push("/profile/user" + elementId);
+						history.push("/profile/" + elementId);
 					})
 					.then(() => {
-						token = store.token = token;
+						let store = this.state.store;
+						setStore({ token: data });
 					})
 
 					.catch(error => {

@@ -73,21 +73,21 @@ export class Signup extends React.Component {
 										placeholder="Password"
 									/>
 								</div>
-
-								<button
-									type="submit"
-									className="btn btn-primary"
-									onClick={() =>
-										actions.onSignup(
-											this.state.first_name,
-											this.state.last_name,
-											this.state.email,
-											this.state.password
-										)
-									}>
-									{"Signup"}
-								</button>
-
+								<Link to="/login">
+									<button
+										type="submit"
+										className="btn btn-primary"
+										onClick={() =>
+											actions.onSignup(
+												this.state.first_name,
+												this.state.last_name,
+												this.state.email,
+												this.state.password
+											)
+										}>
+										{"Signup"}
+									</button>
+								</Link>
 								{this.onErrorHandling(store.errorStatus)}
 								<Link to="/">
 									<a href="#"> {"Go Back Home"}</a>
