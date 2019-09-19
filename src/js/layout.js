@@ -34,8 +34,8 @@ export class Layout extends React.Component {
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/profile/<int:user_id>" component={Profile} />
-							<Route exact path="/profilePic/<int:user_id>" component={ProfilePic} />
+							<Route exact path="/profile/<int:elementId>" component={Profile} />
+							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />
 							<Route render={() => <h1>Not found!</h1>} />

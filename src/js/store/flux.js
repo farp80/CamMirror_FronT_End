@@ -1,12 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: []
+			token: ""
 		},
 		actions: {
 			logOut: () => {
 				let store = this.state.store;
-				setStore({ token: data });
+				setStore({ token: data.jwt });
 				store.token = null;
 			},
 
@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						//console.log(data);
 						let store = this.state.store;
-						setStore({ token: data });
+						setStore({ token: data.jwt });
 						history.push("/profile/" + elementId);
 					})
 					.catch(error => {
@@ -90,13 +90,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
 						}
+						// console.log(data.jwt);
+						// let store = getStore;
+						setStore({ token: data.jwt });
 					})
+
 					.then(() => {
 						history.push("/profile/" + elementId);
-					})
-					.then(() => {
-						let store = this.state.store;
-						setStore({ token: data });
 					})
 
 					.catch(error => {
