@@ -1,13 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: ""
+			token: null,
+			currentUserId: null
 		},
 		actions: {
 			logOut: () => {
-				let store = this.state.store;
-				setStore({ token: data.jwt });
-				store.token = null;
+				setStore({ token: null, currentUserId: null });
 			},
 
 			delete: elementId => {
@@ -92,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 						// console.log(data.jwt);
 						// let store = getStore;
-						setStore({ token: data.jwt });
+						setStore({ token: data.jwt, currentUserId: data.id });
 					})
 
 					.then(() => {
