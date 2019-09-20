@@ -9,6 +9,7 @@ import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+//import ProfileNavbar from "./component/profileNavbar.js";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
@@ -28,13 +29,13 @@ export class Layout extends React.Component {
 			<div className="d-flex flex-column h-100">
 				<BrowserRouter basename={basename}>
 					<ScrollToTop>
-						<Navbar />
+						{/*<Navbar />*/}
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/profile/<int:user_id>" component={Profile} />
-							<Route exact path="/profilePic/<int:user_id>" component={ProfilePic} />
+							<Route exact path="/profile/<int:elementId>" component={Profile} />
+							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />
 							<Route render={() => <h1>Not found!</h1>} />

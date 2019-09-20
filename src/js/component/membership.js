@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Navbar } from "../component/navbar";
 import "../../styles/home.scss";
 
 export class Membership extends React.Component {
@@ -10,6 +11,9 @@ export class Membership extends React.Component {
 				{({ store }) => {
 					return (
 						<React.Fragment>
+							<div className="container">
+								<Navbar />
+							</div>
 							<div className="container">
 								<div className="row col-12">
 									<div className="membership-benefits mt-5 mb-5">

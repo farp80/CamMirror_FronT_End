@@ -2,6 +2,7 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Link } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 export class Home extends React.Component {
@@ -23,6 +24,9 @@ export class Home extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
+				<div className="container">
+					<Navbar />
+				</div>
 				<div className="body">
 					<div className="container">
 						<div className="jumbotron jumbotron-fluid">
