@@ -1,12 +1,15 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: null,
-			currentUserId: null
+			user: {
+				token: null,
+				currentUserId: null
+			},
+			profile: { first_name: null, last_name: null, currentUserId: null, profileId: null }
 		},
 		actions: {
 			logOut: () => {
-				setStore({ token: null, currentUserId: null });
+				setStore({ token: null, currentUserId: null, first_name: null });
 			},
 
 			delete: elementId => {
@@ -93,9 +96,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// let store = getStore;
 						setStore({ token: data.jwt, currentUserId: data.id });
 					})
-
 					.then(() => {
-						history.push("/profile/" + elementId);
+						let store = getStore();
+						fetch(
+							"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile/" +
+								store.currentUserId,
+							{
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+									Authorization: "Bearer " + store.token
+								}
+							}
+						);
+					})
+					.then(() => {
+						history.push("/profile/");
 					})
 
 					.catch(error => {
