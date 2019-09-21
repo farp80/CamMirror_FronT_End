@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import SignUp from "../component/signup.js";
+
 import { Navbar } from "../component/navbar";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
@@ -46,6 +47,7 @@ export class Login extends React.Component {
 							onChange={this.onChangePassword}
 						/>
 					</div>
+
 					<Context.Consumer>
 						{({ store, actions }) => {
 							return (

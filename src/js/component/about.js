@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 
@@ -7,6 +8,9 @@ export class About extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
+				<div className="container">
+					<Navbar />
+				</div>
 				<div className="container about">
 					<div className="row col-12">
 						<h1 className="mb-5">Welcome to Mirror Me</h1>
