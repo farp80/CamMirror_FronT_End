@@ -29,7 +29,7 @@ export class Profile extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-					const contact = store.contacts.find(c => c.id === parseInt(this.props.match.params.id));
+					const profile = store.profile.find(c => c.currentUserId === parseInt(this.props.match.params.id));
 					<React.Fragment>
 						<div className="container">
 							<ProfileNavbar />

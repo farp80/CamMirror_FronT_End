@@ -46,7 +46,7 @@ export class Home extends React.Component {
 										<p className="card-text">
 											Want to see the possibilites? Start your free trial today.
 										</p>
-										<button className="btn btn-primary">
+										<button className="btn btn-secondary">
 											<Link to="/signup">
 												<i className="fas fa-camera" />
 											</Link>

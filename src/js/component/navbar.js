@@ -25,7 +25,7 @@ export class Navbar extends React.Component {
 			<Context.Consumer>
 				{({ store }) => {
 					return (
-						<nav className="navbar navbar-light bg-light mb-3">
+						<nav className="navbar navbar-dark bg-dark mb-3">
 							<Link to="/">
 								<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
 							</Link>
@@ -42,12 +42,6 @@ export class Navbar extends React.Component {
 								<Link to="/membership">
 									<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
 								</Link>
-								<button
-									onClick={() => actions.logOut()}
-									type="button"
-									className="btn1 btn-primary form-control">
-									Logout <i className="fas fa-sign-out-alt" />
-								</button>
 							</div>
 						</nav>
 					);

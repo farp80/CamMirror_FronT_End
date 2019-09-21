@@ -9,6 +9,7 @@
   margin: auto;
   width: 400px;
   border: 3px solid green;
+  background-color: black;
   padding: 10px;
 }
 
@@ -22,6 +23,7 @@
   margin: auto;
   width: 400px;
   border: 3px solid green;
+  background-color: black;
   padding: 10px;
 }
 
@@ -37,8 +39,8 @@
 }
 
 .membership-benefits{
-border: 3px solid green;
-  padding: 10px;
+    border: 3px solid green;
+    padding: 10px;
 
 }
 // this is the css to add picture in jumbotron and body background//
@@ -60,4 +62,8 @@ border: 3px solid green;
      // profile card transparent background//
 .card{
     background: rgba(204, 204, 204, 0.1)
+}
+
+body{
+    background-color: grey
 }

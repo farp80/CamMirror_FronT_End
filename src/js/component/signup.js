@@ -29,7 +29,25 @@ export class Signup extends React.Component {
 				{({ store, actions }) => {
 					return (
 						<React.Fragment>
-							<div className="signup">
+							<div className="container">
+								<nav className="navbar navbar-dark bg-dark mb-3">
+									<Link to="/">
+										<img
+											src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png"
+											className="mirrorme"
+										/>
+									</Link>
+									<div className="ml-auto">
+										<Link to="/about">
+											<span className="navbar-brand ml-3 mb-0 h1">About Us</span>
+										</Link>
+										<Link to="/membership">
+											<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
+										</Link>
+									</div>
+								</nav>
+							</div>
+							<div className="signup text-light">
 								<div className="form-group">
 									<label forHtml="exampleInputName1">First Name</label>
 									<input
@@ -84,7 +102,14 @@ export class Signup extends React.Component {
 												this.state.email,
 												this.state.password
 											)
-										}>
+										}
+										disabled={(() =>
+											actions.isButtonEnabled(
+												this.state.first_name,
+												this.state.last_name,
+												this.state.email,
+												this.state.password
+											))()}>
 										{"Signup"}
 									</button>
 								</Link>

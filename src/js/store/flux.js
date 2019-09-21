@@ -11,7 +11,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logOut: () => {
 				setStore({ token: null, currentUserId: null, first_name: null });
 			},
-
+			isButtonEnabled: (first_name, last_name, email, password) => {
+				console.log("BUTTON STATE");
+				return first_name === "" || last_name === "" || email === "" || password === "";
+			},
 			delete: elementId => {
 				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/user/" + elementId, {
 					method: "DELETE",
