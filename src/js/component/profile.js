@@ -4,6 +4,7 @@ import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import Avatar from "react-avatar-edit";
 import ProfilePic from "../component/profilePic.js";
+import ProfileNavbar from "../component/profileNavbar.js";
 import PropTypes from "prop-types";
 //import ProfileNavbar from "./component/profileNavbar.js";
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
@@ -30,9 +31,9 @@ export class Profile extends React.Component {
 				{({ store, actions }) => {
 					const contact = store.contacts.find(c => c.id === parseInt(this.props.match.params.id));
 					<React.Fragment>
-						{/*}	<div className="container">
-					<ProfileNavbar />
-				</div>*/}
+						<div className="container">
+							<ProfileNavbar />
+						</div>
 						<div className="bodyb">
 							<div className="container">
 								{/*<div className="card bg-dark text-white">
