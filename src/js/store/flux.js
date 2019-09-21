@@ -1,11 +1,14 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			user: {
-				token: null,
-				currentUserId: null
-			},
-			profile: { first_name: null, last_name: null, currentUserId: null, profileId: null }
+			token: null,
+			currentUserId: null,
+			profile: {
+				first_name: null,
+				last_name: null,
+				currentUserId: null,
+				profileId: null
+			}
 		},
 		actions: {
 			logOut: () => {
@@ -55,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/signup", {
+				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/signup", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -80,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/login", {
+				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/login", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -95,30 +98,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
 						}
-						// console.log(data.jwt);
-						// let store = getStore;
 						setStore({ token: data.jwt, currentUserId: data.id });
 					})
-					.then(() => {
+					.then(async () => {
 						let store = getStore();
-						fetch(
-							"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile/" +
+						const resp = await fetch(
+							"https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/profile/" +
 								store.currentUserId,
 							{
 								method: "POST",
 								headers: {
 									"Content-Type": "application/json",
-									Authorization: "Bearer " + store.token
+									authorization: "Bearer " + store.token
 								}
 							}
 						);
+						if (resp.status === 200) {
+							return resp.json();
+						} else {
+							throw new Error("Incorrect Profile usage");
+						}
 					})
-					.then(() => {
-						history.push("/profile/");
+					.then(data => {
+						let store = getStore();
+
+						let profile = store.profile;
+						profile.first_name = data.first_name;
+						profile.last_name = data.last_name;
+						profile.currentUserId = data.currentUserId;
+						setStore({ profile: profile });
+
+						//history.push("/profile/");
 					})
 
 					.catch(error => {
-						// console.log(error);
+						console.log("## PROFILES", error);
 					});
 			}
 		}
