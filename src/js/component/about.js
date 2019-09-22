@@ -16,7 +16,7 @@ export class About extends React.Component {
 						<h1 className="mb-5">Welcome to Mirror Me</h1>
 
 						<p>
-							Tired of holding you phone in the mirror to take a picture? Dont want to deal with those
+							Tired of holding your phone in the mirror to take a picture? Dont want to deal with those
 							selfie sticks? Well youre in luck, our team here at Mirror Me have solved these problems.
 						</p>
 						<p>
