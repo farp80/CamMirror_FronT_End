@@ -22,7 +22,7 @@ export class Login extends React.Component {
 	render() {
 		return (
 			<Context.Consumer>
-				{({ store }) => {
+				{({ store, actions }) => {
 					return (
 						<React.Fragment>
 							<div className="container">

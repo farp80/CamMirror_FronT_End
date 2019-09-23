@@ -29,7 +29,7 @@ export class Profile extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-					const profile = store.profile.find(c => c.currentUserId === parseInt(this.props.match.params.id));
+					const profile = store.profile;
 					<React.Fragment>
 						<div className="container">
 							<ProfileNavbar />
@@ -55,8 +55,10 @@ export class Profile extends React.Component {
 									src="http://granyflats.co/wp-content/uploads/2019/03/bathroom-mirror-tv-touch-screen-anti-fog-touch-screen-magic-mirror-silver-color-inch-for-bathroom-home-decorations-christmas-gifts.jpg"
 									className="card-img"
 								/>*/}
-										<h1 className="display-4 text-center">Welcome!</h1>
-										<p className="lead text-center">This is a where perfect selfies are made.</p>
+										<h1 className="display-4 text-center">{"Welcome! " + profile.first_name}</h1>
+										<p className="lead text-center">
+											{"This is a where perfect selfies are made."}
+										</p>
 									</div>
 								</div>
 							</div>

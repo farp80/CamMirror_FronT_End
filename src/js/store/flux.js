@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				first_name: null,
 				last_name: null,
 				currentUserId: null,
-				profileId: null
+				profileId: null,
+				createdDate: null,
+				updatedDate: null
 			}
 		},
 		actions: {
@@ -121,16 +123,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						let store = getStore();
-
 						let profile = store.profile;
 						profile.first_name = data.first_name;
-						profile.last_name = data.last_name;
 						profile.currentUserId = data.currentUserId;
-						setStore({ profile: profile });
-
-						//history.push("/profile/");
+						profile.last_name = data.last_name;
+						setStore({ profile: data }), history.push("/profile/");
 					})
-
 					.catch(error => {
 						console.log("## PROFILES", error);
 					});
