@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.scss";
 import SignUp from "../component/signup.js";
-
+import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar";
 import PropTypes from "prop-types";
-import { Context } from "../store/appContext";
 
 export class Login extends React.Component {
 	constructor() {
@@ -22,7 +21,7 @@ export class Login extends React.Component {
 	render() {
 		return (
 			<Context.Consumer>
-				{({ store }) => {
+				{({ store, actions }) => {
 					return (
 						<React.Fragment>
 							<div className="container">
@@ -66,14 +65,11 @@ export class Login extends React.Component {
 										onChange={this.onChangePassword}
 									/>
 								</div>
-
 								<button
 									type="submit"
 									className="btn btn-primary"
-									onClick={() => actions.onLogin(this.state.email, this.state.password)}>
-									{"Login"}
-								</button>
-
+									onClick={() => actions.onLogin(this.state.email, this.state.password)}
+								/>
 								<Link to="/">
 									<a href="#"> home</a>
 								</Link>
