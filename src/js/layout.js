@@ -6,7 +6,6 @@ import { Home } from "./views/home";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
-import { ProfileNavbar } from "./component/profileNavbar.js";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
@@ -34,7 +33,8 @@ export class Layout extends React.Component {
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/new" component={New} />
-							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
+							<Route exact path="/profile" component={Profile} />
+							<Route exact path="/profilePic" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />
 							<Route render={() => <h1>Not found!</h1>} />
