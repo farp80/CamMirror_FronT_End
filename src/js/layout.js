@@ -26,14 +26,14 @@ export class Layout extends React.Component {
 
 		return (
 			<div className="d-flex flex-column h-100">
-				<BrowserRouter basename={basename}>
+				<BrowserRouter>
 					<ScrollToTop>
 						{/*<Navbar />*/}
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/new" component={Profile} />
+							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />

@@ -176,7 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
 						setStore({ profile: profile });
-						history.push("/new");
+						history.push("/profile");
 					})
 					.catch(error => {
 						console.log("## PROFILES", error);
