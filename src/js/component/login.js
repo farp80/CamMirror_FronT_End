@@ -68,7 +68,9 @@ export class Login extends React.Component {
 								<button
 									type="submit"
 									className="btn btn-primary"
-									onClick={() => actions.onLogin(this.state.email, this.state.password)}
+									onClick={() =>
+										actions.onLogin(this.state.email, this.state.password, this.props.history)
+									}
 								/>
 								<Link to="/">
 									<a href="#"> home</a>
@@ -81,3 +83,6 @@ export class Login extends React.Component {
 		);
 	}
 }
+Login.propTypes = {
+	history: PropTypes.object
+};

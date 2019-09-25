@@ -10,6 +10,8 @@ import { ProfileNavbar } from "./component/profileNavbar.js";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
+import { New } from "./component/new";
+
 import { Profile } from "./component/profile";
 import { ProfilePic } from "./component/profilePic";
 import { About } from "./component/about";
@@ -24,14 +26,14 @@ export class Layout extends React.Component {
 
 		return (
 			<div className="d-flex flex-column h-100">
-				<BrowserRouter basename={basename}>
+				<BrowserRouter>
 					<ScrollToTop>
 						{/*<Navbar />*/}
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/profile/" component={Profile} />
+							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />

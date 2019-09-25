@@ -95,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/signup", {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/signup", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -115,12 +115,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			onLogin: (email, password) => {
+			onLogin: (email, password, history) => {
 				let settings = {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/login", {
+				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/login", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -140,12 +140,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(async () => {
 						let store = getStore();
 						const resp = await fetch(
-							"https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/profile/" +
-								store.currentUserId,
+							"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile",
 							{
 								method: "POST",
 								body: JSON.stringify({
-									user_id: currentUserId
+									user_id: store.currentUserId
 								}),
 								headers: {
 									"Content-Type": "application/json",
@@ -162,10 +161,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						let store = getStore();
 						let profile = store.profile;
+						console.log(
+							"firstname" +
+								data.first_name +
+								" | " +
+								data.last_name +
+								" | " +
+								data.created_date +
+								" | " +
+								data.currentUserId
+						);
 						profile.first_name = data.first_name;
+						profile.last_name = data.last_name;
+						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
 						setStore({ profile: profile });
-						history.push("/profile/" + store.currentUserId);
+						history.push("/profile");
 					})
 					.catch(error => {
 						console.log("## PROFILES", error);
