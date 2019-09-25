@@ -120,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/login", {
+				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/login", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -130,7 +130,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => {
 						return response.json();
 					})
-
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
@@ -140,7 +139,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(async () => {
 						let store = getStore();
 						const resp = await fetch(
-							"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile",
+							"https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/profile",
 							{
 								method: "POST",
 								body: JSON.stringify({
@@ -176,7 +175,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
 						setStore({ profile: profile });
-						history.push("/profile");
+						history.push("/new");
 					})
 					.catch(error => {
 						console.log("## PROFILES", error);

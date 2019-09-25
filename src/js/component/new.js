@@ -21,14 +21,14 @@ export class New extends React.Component {
 
 	render() {
 		return (
-			<Context.Consumer>
-				{({ store, actions }) => {
-					const profile = store.profile;
-					<React.Fragment>
-						<div className="container">hello</div>
-					</React.Fragment>;
-				}}
-			</Context.Consumer>
+			<React.Fragment>
+				<div className="container">
+					<div>1 2 3 Trying...</div>
+					<button className="btn btn-primary">
+						<i className="fas fa-camera" />
+					</button>
+				</div>
+			</React.Fragment>
 		);
 	}
 }

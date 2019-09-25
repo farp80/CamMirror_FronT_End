@@ -22,8 +22,8 @@ export class Layout extends React.Component {
 	render() {
 		//the basename is used when your project is published in a subdirectory and not in the root of the domain
 		// you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
-		const basename = process.env.BASENAME || "";
-
+		//const basename = process.env.BASENAME || "";
+		const basename = "";
 		return (
 			<div className="d-flex flex-column h-100">
 				<BrowserRouter>
@@ -33,7 +33,7 @@ export class Layout extends React.Component {
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/profile" component={Profile} />
+							<Route exact path="/new" component={New} />
 							<Route exact path="/profilePic/<int:elementId>" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/signup" component={Signup} />
