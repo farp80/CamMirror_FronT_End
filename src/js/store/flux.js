@@ -63,15 +63,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-            createMembership: (name) => {
+			createMembership: name => {
 				let settings = {
-					name: name,
+					name: name
 				};
 				fetch("https://3000-cd297974-45e7-473e-ba1d-0900b3f3d039.ws-us1.gitpod.io/profile/membership", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
-						"Content-Type": "application/json", authorization: "Bearer " + store.token
+						"Content-Type": "application/json",
+						authorization: "Bearer " + store.token
 					}
 				})
 					.then(response => {
