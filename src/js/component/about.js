@@ -9,8 +9,21 @@ export class About extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="container">
-					<Navbar />
+					<nav className="navbar navbar-dark bg-dark mb-3">
+						<Link to="/">
+							<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
+						</Link>
+						<div className="ml-auto">
+							<Link to="/login">
+								<span className="navbar-brand mb-0 h1">
+									<i className="fas fa-lock mr-1" />
+									Log in
+								</span>
+							</Link>
+						</div>
+					</nav>
 				</div>
+				<div className="container" />
 				<div className="container about">
 					<div className="row col-12">
 						<h1 className="mb-5">Welcome to Mirror Me</h1>

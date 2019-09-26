@@ -27,7 +27,6 @@ export class Layout extends React.Component {
 			<div className="d-flex flex-column h-100">
 				<BrowserRouter>
 					<ScrollToTop>
-						{/*<Navbar />*/}
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />

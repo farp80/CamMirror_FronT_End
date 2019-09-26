@@ -36,9 +36,6 @@ export class Login extends React.Component {
 										<Link to="/about">
 											<span className="navbar-brand ml-3 mb-0 h1">About Us</span>
 										</Link>
-										<Link to="/membership">
-											<span className="navbar-brand ml-3 mb-0 h1">Membership</span>
-										</Link>
 									</div>
 								</nav>
 							</div>
