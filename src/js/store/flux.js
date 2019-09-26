@@ -114,6 +114,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
+			onCameraPic: () => {
+				console.log("$ READy to Take picture!!! ");
+				fetch("http://192.168.0.110:5000/start")
+					.then(response => response.json())
+					.then(data => {
+						if (data.msg === "Started") {
+							console.log("STARTED");
+						}
+					})
+					.then(async () => {
+						const resp = await fetch("http://192.168.0.110:5000/take");
+						if (resp.status === 200) {
+							return resp.json();
+						} else {
+							throw new Error("Incorrect Profile usage");
+						}
+					})
+					.then(async () => {
+						const resp = await fetch("http://192.168.0.110:5000/end");
+						if (resp.status === 200) {
+							return resp.json();
+						} else {
+							throw new Error("Incorrect Profile usage");
+						}
+					})
+					.catch(error => console.log(error));
+			},
 
 			onLogin: (email, password, history) => {
 				let settings = {

@@ -21,14 +21,20 @@ export class New extends React.Component {
 
 	render() {
 		return (
-			<React.Fragment>
-				<div className="container">
-					<div>1 2 3 Trying...</div>
-					<button className="btn btn-primary">
-						<i className="fas fa-camera" />
-					</button>
-				</div>
-			</React.Fragment>
+			<Context.Consumer>
+				{({ store, actions }) => {
+					return (
+						<React.Fragment>
+							<div className="container">
+								<div>{"1 2 3 Trying..."}</div>
+								<button className="btn btn-primary">
+									<i className="fas fa-camera" onClick={() => actions.onCameraPic()} />
+								</button>
+							</div>
+						</React.Fragment>
+					);
+				}}
+			</Context.Consumer>
 		);
 	}
 }
