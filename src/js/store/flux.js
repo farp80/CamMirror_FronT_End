@@ -1,6 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	const backend_url = process.env.BACKENDURL;
-	// console.log(" ENV " + backend_url);
 	return {
 		store: {
 			token: null,
@@ -113,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			onCameraPic: () => {
 				console.log("$ READy to Take picture!!! ");
-				fetch("https://10.10.3.33:5000/start")
+				fetch("http://10.10.3.33:5000/start")
 					.then(response => response.json())
 					.then(data => {
 						if (data.msg === "Started") {
