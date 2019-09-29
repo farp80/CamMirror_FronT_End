@@ -9,7 +9,6 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
-import { New } from "./component/new";
 
 import { Profile } from "./component/profile";
 import { ProfilePic } from "./component/profilePic";
@@ -27,11 +26,11 @@ export class Layout extends React.Component {
 			<div className="d-flex flex-column h-100">
 				<BrowserRouter>
 					<ScrollToTop>
+						<Navbar />
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/new" component={New} />
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/profilePic" component={ProfilePic} />
 							<Route exact path="/about" component={About} />
