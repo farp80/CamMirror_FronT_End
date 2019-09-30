@@ -1,5 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	const backend_url = process.env.BACKENDURL;
+	const raspberry_ip = process.env.RASPBERRYIP;
 	return {
 		store: {
 			token: null,
@@ -10,7 +11,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				currentUserId: null,
 				profileId: null,
 				createdDate: null,
-				updatedDate: null
+				updatedDate: null,
+				cloudinary_folder: null,
+				cloudinary_url: null
 			}
 		},
 		actions: {
@@ -19,7 +22,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				history.push("/");
 			},
 			isButtonEnabled: (first_name, last_name, email, password) => {
-				console.log("BUTTON STATE");
 				return first_name === "" || last_name === "" || email === "" || password === "";
 			},
 			deleteProfile: currentUserId => {
@@ -111,8 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			onCameraPic: () => {
-				console.log("$ READy to Take picture!!! ");
-				fetch("http://10.10.3.33:5000/start")
+				fetch("http://" + raspberry_ip + ":5000/start")
 					.then(response => response.json())
 					.then(data => {
 						if (data.msg === "Started") {
@@ -120,20 +121,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(async () => {
-						const resp = await fetch("http://10.10.3.33:5000/take");
+						let store = getStore();
+						const resp = await fetch("http://" + raspberry_ip + ":5000/take", {
+							method: "POST",
+							body: JSON.stringify({
+								user_id: store.currentUserId,
+								first_name: store.profile.first_name,
+								last_name: store.profile.last_name
+							}),
+							headers: {
+								"Content-Type": "application/json"
+							}
+						});
 						if (resp.status === 200) {
 							return resp.json();
 						} else {
 							throw new Error("Incorrect Profile usage");
 						}
 					})
-					.then(async () => {
-						const resp = await fetch("http://10.10.3.33:5000/end");
-						if (resp.status === 200) {
-							return resp.json();
-						} else {
-							throw new Error("Incorrect Profile usage");
-						}
+					.then(data => {
+						console.log(" RESULT: " + data.result.original_filename + "| URL " + data.result.secure_url);
 					})
 					.catch(error => console.log(error));
 			},
@@ -195,10 +202,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
 						setStore({ profile: profile });
-						history.push("/new");
+						history.push("/profilePic");
 					})
 					.catch(error => {
-						console.log("## PROFILES", error);
+						console.log("PROFILE's ERROR: ", error);
 					});
 			}
 		}

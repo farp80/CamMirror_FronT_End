@@ -50,7 +50,6 @@ export class Profile extends React.Component {
 						</button>
 					</nav>
 				</div>
-
 				<div className="container" />
 				<div className="bodyb">
 					<div className="container">

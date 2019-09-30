@@ -148,7 +148,10 @@ export class ProfilePic extends React.Component {
 																<h5 className="card-title">Take a picture</h5>
 																<p className="card-text">Worth a thousands words.</p>
 																<button className="btn btn-primary">
-																	<i className="fas fa-camera" />
+																	<i
+																		className="fas fa-camera"
+																		onClick={() => actions.onCameraPic()}
+																	/>
 																</button>
 															</div>
 														</div>
