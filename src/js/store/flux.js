@@ -164,7 +164,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
 						}
-						setStore({ token: data.jwt, currentUserId: data.id });
+						setStore({ token: data.jwt, currentUserId: data.id, email: data.email });
 					})
 					.then(async () => {
 						let store = getStore();

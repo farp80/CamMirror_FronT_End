@@ -23,7 +23,7 @@ export class Navbar extends React.Component {
 	render() {
 		return (
 			<Context.Consumer>
-				{({ store }) => {
+				{({ store, actions }) => {
 					return (
 						<nav className="navbar navbar-dark bg-dark mb-3">
 							<Link to="/">

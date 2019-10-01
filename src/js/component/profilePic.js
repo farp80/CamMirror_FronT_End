@@ -67,13 +67,26 @@ export class ProfilePic extends React.Component {
 											<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
 										</Link>
 									</div>
-									<button
-										onClick={() => actions.logOut()}
-										type="button"
-										className="btn1 btn-primary form-control">
-										Logout
-										<i className="fas fa-sign-out-alt" />
-									</button>
+									if (store.token==null)
+									{
+										<button
+											onClick={() => actions.logOut()}
+											type="button"
+											className="btn1 btn-primary form-control">
+											Logout
+											<i className="fas fa-sign-out-alt" />
+										</button>
+									}
+									else
+									{
+										<button
+											onClick={() => actions.logIn()}
+											type="button"
+											className="btn1 btn-primary form-control">
+											Logout
+											<i className="fas fa-lock mr-1" />
+										</button>
+									}
 								</nav>
 							</div>
 							<div className="container">
