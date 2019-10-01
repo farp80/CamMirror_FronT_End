@@ -1,4 +1,5 @@
 const getState = ({ getStore, getActions, setStore }) => {
+	const backend_url = process.env.BACKENDURL;
 	return {
 		store: {
 			token: null,
@@ -22,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteProfile: currentUserId => {
 				fetch(
-					"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile/" + store.currentUserId,
+					backend_url + "/profile/" + store.currentUserId,
 					{
 						method: "DELETE",
 						headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token }
@@ -35,22 +36,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			updateProfile: (first_name, last_name, email, password, currentUserId) => {
-				fetch(
-					"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile/" + store.currentUserId,
-					{
-						method: "PUT",
-						headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token },
-						body: JSON.stringify({
-							first_name: first_name,
-							last_name: last_name,
-							email: email,
-							password: password
-						})
-					}
-				);
-				fetch(
-					"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile/" + store.currentUserId
-				)
+				fetch(backend_url + "/profile/" + store.currentUserId, {
+					method: "PUT",
+					headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token },
+					body: JSON.stringify({
+						first_name: first_name,
+						last_name: last_name,
+						email: email,
+						password: password
+					})
+				});
+				fetch(backend_url + "/profile/" + store.currentUserId)
 					.then(resp => resp.json())
 					.then(data => {
 						let store = this.state.store;
@@ -66,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let settings = {
 					name: name
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/membership", {
+				fetch(backend_url + "/membership", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -94,7 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/signup", {
+				fetch(backend_url + "/signup", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -115,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			onCameraPic: () => {
 				console.log("$ READy to Take picture!!! ");
-				fetch("http://192.168.0.110:5000/start")
+				fetch("http://10.10.3.33:5000/start")
 					.then(response => response.json())
 					.then(data => {
 						if (data.msg === "Started") {
@@ -123,7 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(async () => {
-						const resp = await fetch("http://192.168.0.110:5000/take");
+						const resp = await fetch("http://10.10.3.33:5000/take");
 						if (resp.status === 200) {
 							return resp.json();
 						} else {
@@ -131,7 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(async () => {
-						const resp = await fetch("http://192.168.0.110:5000/end");
+						const resp = await fetch("http://10.10.3.33:5000/end");
 						if (resp.status === 200) {
 							return resp.json();
 						} else {
@@ -146,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: email,
 					password: password
 				};
-				fetch("https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/login", {
+				fetch(backend_url + "/login", {
 					method: "POST",
 					body: JSON.stringify(settings),
 					headers: {
@@ -164,19 +160,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(async () => {
 						let store = getStore();
-						const resp = await fetch(
-							"https://3000-ff448188-62c4-4ee2-89a0-f5e507a5dc4c.ws-us1.gitpod.io/profile",
-							{
-								method: "POST",
-								body: JSON.stringify({
-									user_id: store.currentUserId
-								}),
-								headers: {
-									"Content-Type": "application/json",
-									authorization: "Bearer " + store.token
-								}
+						const resp = await fetch(backend_url + "/profile", {
+							method: "POST",
+							body: JSON.stringify({
+								user_id: store.currentUserId
+							}),
+							headers: {
+								"Content-Type": "application/json",
+								authorization: "Bearer " + store.token
 							}
-						);
+						});
 						if (resp.status === 200) {
 							return resp.json();
 						} else {
