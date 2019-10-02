@@ -21,12 +21,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logOut: () => {
 				setStore({ token: null, currentUserId: null });
 			},
-
-			// resetTest: () => {
-			// 	let store = getStore();
-			// 	setStore({ test: "test" });
-			// },
-
 			isButtonEnabled: (first_name, last_name, email, password) => {
 				return first_name === "" || last_name === "" || email === "" || password === "";
 			},
@@ -43,8 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//console.log(error);
 				});
 			},
-
-			updateProfile: (first_name, last_name, email, password, currentUserId) => {
+			updateProfile: (first_name, last_name, email, password) => {
 				fetch(backend_url + "/profile/" + store.currentUserId, {
 					method: "PUT",
 					headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token },
@@ -66,7 +59,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//console.log(error);
 					});
 			},
-
 			createMembership: name => {
 				let settings = {
 					name: name
@@ -91,7 +83,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					});
 			},
-
 			onSignup: (first_name, last_name, email, password) => {
 				let settings = {
 					first_name: first_name,
@@ -180,7 +171,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.catch(error => console.log(error));
 			},
-
 			onLogin: (email, password, history) => {
 				let settings = {
 					email: email,
@@ -223,16 +213,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						let store = getStore();
 						let profile = store.profile;
-						console.log(
-							"firstname" +
-								data.first_name +
-								" | " +
-								data.last_name +
-								" | " +
-								data.created_date +
-								" | " +
-								data.currentUserId
-						);
+						// const response = await fetch(backend_url + "/picture/" + data.currentUserId);
+
+						// if (response.status === 200) {
+						// 	console.log(" RESPONSE : " + response);
+						// }
+						// get all the pictures from that profile
+
 						profile.first_name = data.first_name;
 						profile.last_name = data.last_name;
 						profile.createdDate = data.created_date;
