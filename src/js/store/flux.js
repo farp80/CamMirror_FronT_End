@@ -10,6 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				last_name: null,
 				currentUserId: null,
 				profileId: null,
+				email: null,
 				createdDate: null,
 				updatedDate: null,
 				cloudinary_folder: null,
@@ -21,6 +22,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: null, currentUserId: null });
 				history.push("/");
 			},
+
+			// resetTest: () => {
+			// 	let store = getStore();
+			// 	setStore({ test: "test" });
+			// },
+
 			isButtonEnabled: (first_name, last_name, email, password) => {
 				return first_name === "" || last_name === "" || email === "" || password === "";
 			},
