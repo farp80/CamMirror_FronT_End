@@ -24,22 +24,6 @@ export class Login extends React.Component {
 				{({ store, actions }) => {
 					return (
 						<React.Fragment>
-							<div className="container">
-								<nav className="navbar navbar-dark bg-dark mb-3">
-									<Link to="/">
-										<img
-											src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png"
-											className="mirrorme"
-										/>
-									</Link>
-									<div className="ml-auto">
-										<Link to="/about">
-											<span className="navbar-brand ml-3 mb-0 h1">About Us</span>
-										</Link>
-									</div>
-								</nav>
-							</div>
-
 							<div className="login text-light">
 								<div className="form-group">
 									<label className="exampleInputEmail1">Email address</label>
@@ -63,12 +47,13 @@ export class Login extends React.Component {
 									/>
 								</div>
 								<button
-									type="submit"
+									type="button"
 									className="btn btn-primary"
 									onClick={() =>
 										actions.onLogin(this.state.email, this.state.password, this.props.history)
-									}
-								/>
+									}>
+									Login
+								</button>
 								<Link to="/">
 									<a href="#"> home</a>
 								</Link>

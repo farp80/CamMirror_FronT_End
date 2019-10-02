@@ -67,26 +67,25 @@ export class ProfilePic extends React.Component {
 											<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
 										</Link>
 									</div>
-									if (store.token==null)
-									{
-										<button
-											onClick={() => actions.logOut()}
-											type="button"
-											className="btn1 btn-primary form-control">
-											Logout
-											<i className="fas fa-sign-out-alt" />
-										</button>
-									}
-									else
-									{
+									{store.token == null ? (
 										<button
 											onClick={() => actions.logIn()}
 											type="button"
 											className="btn1 btn-primary form-control">
-											Logout
+											Login
 											<i className="fas fa-lock mr-1" />
 										</button>
-									}
+									) : (
+										<Link to="/">
+											<button
+												onClick={() => actions.logOut()}
+												type="button"
+												className="btn1 btn-primary form-control">
+												Logout
+												<i className="fas fa-sign-out-alt" />
+											</button>
+										</Link>
+									)}
 								</nav>
 							</div>
 							<div className="container">
@@ -104,15 +103,17 @@ export class ProfilePic extends React.Component {
 											{/* <!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE --> */}
 											<div className="profile-usertitle">
-												<div className="profile-user_name">Salvador</div>
-												<div className="profile-user_email">User@yahoo.com</div>
+												<div className="profile-user_name">(store.currentUserId)</div>
+												<div className="profile-user_email">(store.email)</div>
 											</div>
 											{/* <!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS --> */}
 											<div className="profile-userbuttons">
-												<button type="button" className="btn btn-success btn-sm">
-													Gallery
-												</button>
+												<Link to="/gallery">
+													<button type="button" className="btn btn-success btn-sm">
+														Gallery
+													</button>
+												</Link>
 												<button type="button" className="btn btn-danger btn-sm">
 													profile Pic
 												</button>
