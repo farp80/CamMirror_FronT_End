@@ -44,10 +44,7 @@ export class Navbar extends React.Component {
 								</Link>
 							</div>
 							<Link to="/">
-								<button
-									onClick={() => actions.logOut}
-									type="button"
-									className="btn1 btn-dark font-size: 358px">
+								<button onClick={() => actions.logOut} type="button" className="btn1 btn-dark">
 									Logout
 									<i className="fas fa-sign-out-alt" />
 								</button>

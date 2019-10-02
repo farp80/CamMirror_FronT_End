@@ -7,23 +7,9 @@ import "../../styles/home.scss";
 export class Membership extends React.Component {
 	constructor() {
 		super();
-		this.state = {
-			clickedMember: ""
-		};
+		this.state = {};
 	}
 	render() {
-		let bronzeExtraClass = "";
-		let goldExtraClass = "";
-		let platinumExtraClass = "";
-
-		if (this.state.clickedMember === "bronze") {
-			bronzeExtraClass = "selected";
-		} else if (this.state.clickedMember === "gold") {
-			goldExtraClass = "selected";
-		} else if (this.state.clickedMember === "platinum") {
-			platinumExtraClass = "selected";
-		}
-
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
@@ -44,9 +30,7 @@ export class Membership extends React.Component {
 									</div>
 									<div className="container member">
 										<div className="row">
-											<div
-												className={"bronze col-4" + bronzeExtraClass}
-												onClick={() => this.setState({ clickedMember: "bronze" })}>
+											<div className="bronze col-4">
 												<h1>Bronze</h1>
 												<ul>
 													<li>Bronze membership $2.99 per month</li>
@@ -58,9 +42,7 @@ export class Membership extends React.Component {
 													className="img-member"
 												/>
 											</div>
-											<div
-												className={"gold col-4" + goldExtraClass}
-												onClick={() => this.setState({ clickedMember: "gold" })}>
+											<div className="gold col-4">
 												<h1>Gold</h1>
 												<ul>
 													<li>Gold membership $4.99 per month</li>
@@ -72,9 +54,7 @@ export class Membership extends React.Component {
 													className="img-member"
 												/>
 											</div>
-											<div
-												className={"platinum col-4" + platinumExtraClass}
-												onClick={() => this.setState({ clickedMember: "platinum" })}>
+											<div className="platinum col-4">
 												<h1>Platinum</h1>
 												<ul>
 													<li>Platinum membership $9.99 per month</li>
@@ -93,6 +73,14 @@ export class Membership extends React.Component {
 							</div>
 							<div className="container mt-5">
 								<legend>Payment</legend>
+								<div className="span9">
+									<label className="control-label">Select Membership</label>
+									<select className="input-block-level">
+										<option>Bronze</option>
+										<option>Gold</option>
+										<option>Platinum</option>
+									</select>
+								</div>
 								<div className="control-group">
 									<label className="control-label">Card Holder Name</label>
 									<div className="controls">
