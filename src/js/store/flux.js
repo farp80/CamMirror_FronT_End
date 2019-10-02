@@ -18,9 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		},
 		actions: {
-			logOut: (token, currentUserId) => {
+			logOut: () => {
 				setStore({ token: null, currentUserId: null });
-				history.push("/");
 			},
 
 			// resetTest: () => {
