@@ -139,8 +139,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 							throw new Error("Incorrect Profile usage");
 						}
 					})
-					.then(data => {
+					.then(async data => {
 						console.log(" RESULT: " + data.result.original_filename + "| URL " + data.result.secure_url);
+						let urlSplitted = data.result.secure_url.split("/");
+						let store = getStore();
+
+						if (urlSplitted.length > 9) {
+							let profile = store.profile;
+							profile.cloudinary_folder = urlSplitted[8];
+							profile.cloudinary_url = data.result.secure_url;
+
+							const resp = await fetch(backend_url + "/pictures", {
+								method: "POST",
+								body: JSON.stringify({
+									user_id: store.currentUserId,
+									folder: urlSplitted[8],
+									url: data.result.secure_url,
+									update_date: new Date(),
+									date: new Date(urlSplitted[8])
+								}),
+								headers: {
+									"Content-Type": "application/json"
+								}
+							});
+							if (resp.status === 200) {
+								setStore({ profile: profile });
+								return resp.json();
+							} else {
+								throw new Error("Incorrect Profile usage");
+							}
+						} else {
+							console.log(" Incorrect URL from Cloudinary");
+						}
 					})
 					.catch(error => console.log(error));
 			},
