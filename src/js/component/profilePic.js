@@ -49,68 +49,27 @@ export class ProfilePic extends React.Component {
 					const profile = store.profile;
 					return (
 						<React.Fragment>
-							{/* <div>
-					<Avatar width={390} height={295} onCrop={this.onCrop} onClose={this.onClose} src={this.state.src} />
-					<img src={this.state.preview} alt="Preview" />
-				</div> */}
-
+							<div className="container" />
 							<div className="container">
-								{/* <nav className="navbar navbar-dark bg-dark mb-3"> */}
-								{/* <Link to="/">
-										<img
-											src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png"
-											className="mirrorme"
-										/>
-									</Link> */}
-								{/* <div className="ml-auto">
-										<Link to="/membership">
-											<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
-										</Link>
-									</div> */}
-								{/* {store.token == null ? (
-										<button
-											onClick={() => actions.logIn()}
-											type="button"
-											className="btn1 btn-primary form-control">
-											Login
-											<i className="fas fa-lock mr-1" />
-										</button>
-									) : (
-										<Link to="/">
-											<button
-												onClick={() => actions.logOut()}
-												type="button"
-												className="btn1 btn-primary form-control">
-												Logout
-												<i className="fas fa-sign-out-alt" />
-											</button>
-										</Link>
-									)}*/}
-								{/* </nav> */}
-							</div>
-							<div className="container">
-								<div className="row profile">
-									<div className="col-md-3">
-										<div className="profile-sidebar">
-											{/* <!-- SIDEBAR USERPIC --> */}
-											<div className="profile-userpic">
-												<img
-													src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/5024/s300/4g-logo-negro-01.png"
-													className="img-responsive"
-													alt="Logged in user pic"
-												/>
+								<div className="row">
+									<div className="col-md-3 profile">
+										<div className="row rowHightest">
+											<img
+												src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/5024/s300/4g-logo-negro-01.png"
+												alt="Logged in user pic"
+												width="200"
+											/>
+										</div>
+										<div className="row rowSmallerHeight">
+											<div className="col-md3">
+												Welcome{" "}
+												{profile.first_name == null
+													? ""
+													: profile.first_name + " " + profile.last_name}
 											</div>
-											{/* <!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE --> */}
-											<div className="profile-usertitle">
-												<div className="profile-user_name">
-													{profile.first_name + " " + profile.last_name}
-												</div>
-												<div className="profile-user_email">{profile.email}</div>
-											</div>
-											{/* <!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR BUTTONS --> */}
-											<div className="profile-userbuttons">
+										</div>
+										<div className="row rowSmallerHeight">
+											<div className="col-md-3">
 												<Link to="/gallery">
 													<button
 														type="button"
@@ -119,27 +78,27 @@ export class ProfilePic extends React.Component {
 														Gallery
 													</button>
 												</Link>
+											</div>
+											<div className="col-md-3">
 												<button type="button" className="btn btn-danger btn-sm">
-													profile Pic
+													Profile Pic
 												</button>
 											</div>
-											{/* <!-- END SIDEBAR BUTTONS -->
-				<!-- SIDEBAR MENU --> */}
-											<div className="profile-usermenu">
+										</div>
+										<div className="row rowSmallerHeight">
+											<div className="col-md-3 profile-usermenu">
 												<ul className="nav">
 													<li className="active" />
-
 													<li>
 														<button
 															type="button"
 															className="btn btn-outline-warning btn-sm">
 															<i className="fas fa-users-cog" />
-															Settings{" "}
+															<Link to="/user"> Settings</Link>
 														</button>
 													</li>
 												</ul>
 											</div>
-											{/* <!-- END MENU --> */}
 										</div>
 									</div>
 									<div className="col-md-9">
@@ -190,9 +149,9 @@ export class ProfilePic extends React.Component {
 														<div className="card">
 															<div className="card-body">
 																<h5 className="card-title">Activate Voice control!</h5>
-																<p className="card-text">
+																{/* <p className="card-text">
 																	Want to link your voice control?
-																</p>
+																</p> */}
 																<Button id="Popover1" className="btn btn-success">
 																	<i className="fas fa-microphone-alt" />
 																</Button>
