@@ -55,19 +55,19 @@ export class ProfilePic extends React.Component {
 				</div> */}
 
 							<div className="container">
-								<nav className="navbar navbar-dark bg-dark mb-3">
-									<Link to="/">
+								{/* <nav className="navbar navbar-dark bg-dark mb-3"> */}
+								{/* <Link to="/">
 										<img
 											src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png"
 											className="mirrorme"
 										/>
-									</Link>
-									<div className="ml-auto">
+									</Link> */}
+								{/* <div className="ml-auto">
 										<Link to="/membership">
 											<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
 										</Link>
-									</div>
-									{store.token == null ? (
+									</div> */}
+								{/* {store.token == null ? (
 										<button
 											onClick={() => actions.logIn()}
 											type="button"
@@ -85,8 +85,8 @@ export class ProfilePic extends React.Component {
 												<i className="fas fa-sign-out-alt" />
 											</button>
 										</Link>
-									)}
-								</nav>
+									)}*/}
+								{/* </nav> */}
 							</div>
 							<div className="container">
 								<div className="row profile">
@@ -103,14 +103,19 @@ export class ProfilePic extends React.Component {
 											{/* <!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE --> */}
 											<div className="profile-usertitle">
-												<div className="profile-user_name">(store.currentUserId)</div>
-												<div className="profile-user_email">(store.email)</div>
+												<div className="profile-user_name">
+													{profile.first_name + " " + profile.last_name}
+												</div>
+												<div className="profile-user_email">{profile.email}</div>
 											</div>
 											{/* <!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS --> */}
 											<div className="profile-userbuttons">
 												<Link to="/gallery">
-													<button type="button" className="btn btn-success btn-sm">
+													<button
+														type="button"
+														className="btn btn-success btn-sm"
+														onClick={() => actions.onGallery()}>
 														Gallery
 													</button>
 												</Link>
