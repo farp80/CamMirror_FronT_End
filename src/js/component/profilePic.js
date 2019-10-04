@@ -103,15 +103,10 @@ export class ProfilePic extends React.Component {
 											{/* <!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE --> */}
 											<div className="profile-usertitle">
-<<<<<<< HEAD
-												<div className="profile-user_name">{store.currentUserId}</div>
-												<div className="profile-user_email">{store.email}</div>
-=======
 												<div className="profile-user_name">
 													{profile.first_name + " " + profile.last_name}
 												</div>
 												<div className="profile-user_email">{profile.email}</div>
->>>>>>> bd6a260d8629921d854b08f9f0f64576adf07482
 											</div>
 											{/* <!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS --> */}
