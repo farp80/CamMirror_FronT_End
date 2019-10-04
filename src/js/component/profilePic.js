@@ -103,14 +103,19 @@ export class ProfilePic extends React.Component {
 											{/* <!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE --> */}
 											<div className="profile-usertitle">
-												<div className="profile-user_name">(store.currentUserId)</div>
-												<div className="profile-user_email">(store.email)</div>
+												<div className="profile-user_name">
+													{profile.first_name + " " + profile.last_name}
+												</div>
+												<div className="profile-user_email">{profile.email}</div>
 											</div>
 											{/* <!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS --> */}
 											<div className="profile-userbuttons">
 												<Link to="/gallery">
-													<button type="button" className="btn btn-success btn-sm">
+													<button
+														type="button"
+														className="btn btn-success btn-sm"
+														onClick={() => actions.onGallery()}>
 														Gallery
 													</button>
 												</Link>

@@ -21,26 +21,9 @@ export class Gallery extends React.Component {
 					const profile = store.profile;
 					return (
 						<React.Fragment>
-							<nav className="navbar navbar-dark bg-dark mb-3">
-								<Link to="/">
-									<img
-										src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png"
-										className="mirrorme"
-									/>
-								</Link>
-								<div className="ml-auto">
-									<Link to="/membership">
-										<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
-									</Link>
-								</div>
-								<button
-									onClick={() => actions.logOut()}
-									type="button"
-									className="btn1 btn-primary form-control">
-									Logout
-									<i className="fas fa-sign-out-alt" />
-								</button>
-							</nav>
+							<Link to="/profilePic">
+								<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
+							</Link>
 						</React.Fragment>
 					);
 				}}
