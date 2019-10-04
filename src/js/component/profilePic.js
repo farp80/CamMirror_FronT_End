@@ -49,11 +49,6 @@ export class ProfilePic extends React.Component {
 					const profile = store.profile;
 					return (
 						<React.Fragment>
-							{/* <div>
-					<Avatar width={390} height={295} onCrop={this.onCrop} onClose={this.onClose} src={this.state.src} />
-					<img src={this.state.preview} alt="Preview" />
-				</div> */}
-
 							<div className="container" />
 							<div className="container">
 								<div className="row">
@@ -94,13 +89,12 @@ export class ProfilePic extends React.Component {
 											<div className="col-md-3 profile-usermenu">
 												<ul className="nav">
 													<li className="active" />
-
 													<li>
 														<button
 															type="button"
 															className="btn btn-outline-warning btn-sm">
 															<i className="fas fa-users-cog" />
-															Settings{" "}
+															<Link to="/user"> Settings</Link>
 														</button>
 													</li>
 												</ul>
@@ -155,9 +149,9 @@ export class ProfilePic extends React.Component {
 														<div className="card">
 															<div className="card-body">
 																<h5 className="card-title">Activate Voice control!</h5>
-																<p className="card-text">
+																{/* <p className="card-text">
 																	Want to link your voice control?
-																</p>
+																</p> */}
 																<Button id="Popover1" className="btn btn-success">
 																	<i className="fas fa-microphone-alt" />
 																</Button>
