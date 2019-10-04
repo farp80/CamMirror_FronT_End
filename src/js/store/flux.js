@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			currentUserId: null,
+			membership_name: null,
 			profile: {
 				first_name: null,
 				last_name: null,
@@ -59,10 +60,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//console.log(error);
 					});
 			},
-			createMembership: name => {
+			createMembership: (membership_name, history) => {
+				let store = getStore();
 				let settings = {
-					name: name
+					membership_name: membership_name
 				};
+
 				fetch(backend_url + "/membership", {
 					method: "POST",
 					body: JSON.stringify(settings),
@@ -74,10 +77,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => {
 						return response.json();
 					})
+
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
+							history.push("/profilePic");
 						}
+						console.log("cefev");
 					})
 					.catch(error => {
 						console.log(error);

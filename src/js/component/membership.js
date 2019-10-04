@@ -7,7 +7,9 @@ import "../../styles/home.scss";
 export class Membership extends React.Component {
 	constructor() {
 		super();
-		this.state = {};
+		this.state = {
+			membership_name: ""
+		};
 	}
 	render() {
 		return (
@@ -75,7 +77,9 @@ export class Membership extends React.Component {
 								<legend>Payment</legend>
 								<div className="span9">
 									<label className="control-label">Select Membership</label>
-									<select className="input-block-level">
+									<select
+										onChange={e => this.setState({ membership_name: e.target.value })}
+										className="input-block-level">
 										<option>Bronze</option>
 										<option>Gold</option>
 										<option>Platinum</option>
@@ -112,7 +116,7 @@ export class Membership extends React.Component {
 									</div>
 								</div>
 								<div className="control-group">
-									<label className="control-label">Card Expiry Date</label>
+									<label className="control-label">Card Expiration Date</label>
 									<div className="controls">
 										<div className="row-fluid">
 											<div className="span9">
@@ -165,7 +169,10 @@ export class Membership extends React.Component {
 									</div>
 								</div>
 								<div className="form-actions">
-									<button type="submit" className="btn btn-primary mt-3">
+									<button
+										type="submit"
+										className="btn btn-primary mt-3"
+										onClick={() => actions.createMembership(this.state.membership_name)}>
 										Submit
 									</button>
 								</div>

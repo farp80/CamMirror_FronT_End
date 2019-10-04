@@ -1,25 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 export class Navbar extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			modal: false
-		};
-
-		this.toggle = this.toggle.bind(this);
+		this.state = {};
 	}
-
-	toggle() {
-		this.setState(prevState => ({
-			modal: !prevState.modal
-		}));
-	}
-
 	render() {
 		return (
 			<Context.Consumer>
@@ -44,7 +34,7 @@ export class Navbar extends React.Component {
 								</Link>
 							</div>
 							<Link to="/">
-								<button onClick={() => actions.logOut} type="button" className="btn1 btn-dark">
+								<button onClick={() => actions.logOut()} type="button" className="btn1 btn-dark">
 									Logout
 									<i className="fas fa-sign-out-alt" />
 								</button>
