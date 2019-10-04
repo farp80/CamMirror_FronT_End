@@ -1,8 +1,4 @@
-/***
-User Profile Sidebar by @keenthemes
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
+
 
 //body {
   //background: #F1F3FA;
@@ -11,12 +7,18 @@ Licensed under MIT
 /* Profile container */
 .profile {
   margin: 20px 0;
+
+   background: rgba(204, 204, 204, 0.1)
 }
 
 /* Profile sidebar */
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
+  background-image: url(https://miro.medium.com/max/4096/1*Q9bfz0wD837_Irn20O-ERA.jpeg);
+  //background: rgba(204, 204, 204, 0.1);
+  width: 100%;
+  height: 100%;
 }
 
 .profile-userpic img {
