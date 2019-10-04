@@ -61,19 +61,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//console.log(error);
 					});
 			},
-			createMembership: (membership_name, history) => {
+			createMembership: (membership_name, history, currentUserId) => {
 				let store = getStore();
 				let settings = {
-					membership_name: membership_name
+					membership_name: membership_name,
+					user_id: store.currentUserId
 				};
+				console.log("cefev", settings);
+				console.log("###", membership_name);
 
 				fetch(backend_url + "/membership", {
 					method: "POST",
-					body: JSON.stringify(settings),
 					headers: {
 						"Content-Type": "application/json",
 						authorization: "Bearer " + store.token
-					}
+					},
+					body: JSON.stringify(settings)
 				})
 					.then(response => {
 						return response.json();
@@ -84,7 +87,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ errorStatus: data.msg });
 							history.push("/profilePic");
 						}
-						console.log("cefev");
+						//console.log("cefev" + data);
 					})
 					.catch(error => {
 						console.log(error);
