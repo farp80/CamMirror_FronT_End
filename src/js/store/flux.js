@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				createdDate: null,
 				updatedDate: null,
 				cloudinary_folder: null,
-				cloudinary_url: null
+				cloudinary_url: null,
+				profile_pic_settings: null
 			}
 		},
 		actions: {
@@ -137,7 +138,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(async data => {
-						console.log(" RESULT: " + data.result.original_filename + "| URL " + data.result.secure_url);
 						let urlSplitted = data.result.secure_url.split("/");
 						let store = getStore();
 
@@ -213,22 +213,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						let store = getStore();
 						let profile = store.profile;
-						// const response = await fetch(backend_url + "/picture/" + data.currentUserId);
-
-						// if (response.status === 200) {
-						// 	console.log(" RESPONSE : " + response);
-						// }
-						// get all the pictures from that profile
 
 						profile.first_name = data.first_name;
 						profile.last_name = data.last_name;
 						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
+
 						setStore({ profile: profile });
 						history.push("/profilePic");
 					})
 					.catch(error => {
-						console.log("PROFILE's ERROR: ", error);
+						console.log("PROFILE  ERROR: " + "\n", error);
+					});
+			},
+			onGallery: () => {
+				let store = getStore();
+				let currentprofile = store.profile;
+				fetch(backend_url + "/picture/" + store.currentUserId)
+					.then(response => response.json())
+					.then(data => {
+						currentprofile.profile_pic_settings = data;
+						setStore({ profile: currentprofile });
 					});
 			}
 		}
