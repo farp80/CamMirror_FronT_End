@@ -25,50 +25,47 @@ export class Home extends React.Component {
 		return (
 			<React.Fragment>
 				<div className="container" />
-				<div className="body">
-					<div className="container">
-						<div className="jumbotron jumbotron-fluid">
-							<div className="container">
-								<h1 className="display-4 text-center">Welcome!</h1>
-								<p className="lead text-center">This is a where perfect selfies are made.</p>
-							</div>
+				<div className="container homeBackgroundPic">
+					<div className="jumbotron jumbotron">
+						<div className="container">
+							<h1 className="display-4 text-center">Welcome!</h1>
+							<p className="lead text-center">This is where your selfies do not need your hands.</p>
 						</div>
 					</div>
-
-					<div className="container">
-						<div className="row">
-							<div className="col-sm-6">
-								<div className="card">
-									<div className="card-body">
-										<h5 className="card-title">Signup For Free</h5>
-										<p className="card-text">
-											Want to see the possibilites? Start your free trial today.
-										</p>
-										<button className="btn btn-secondary">
-											<Link to="/signup">
-												<i className="fas fa-camera" />
-											</Link>
-										</button>
-									</div>
+				</div>
+				<div className="container mt-4">
+					<div className="row">
+						<div className="col-sm-6 pl-0">
+							<div className="card">
+								<div className="card-body">
+									<h5 className="card-title">Signup For Free</h5>
+									<p className="card-text">
+										Want to see the possibilites? Start your free trial today.
+									</p>
+									<button className="btn btn-secondary">
+										<Link to="/signup">
+											<i className="fas fa-camera" />
+										</Link>
+									</button>
 								</div>
 							</div>
-							<div className="col-sm-6">
-								<div className="card">
-									<div className="card-body">
-										<h5 className="card-title">Contact Us</h5>
-										<p className="card-text">Want to get in touch with us? Cick below.</p>
-										<Button id="Popover1" type="button">
-											Email Us!
-										</Button>
-										<Popover
-											placement="bottom"
-											isOpen={this.state.popoverOpen}
-											target="Popover1"
-											toggle={this.toggle}>
-											<PopoverHeader>Email questions to</PopoverHeader>
-											<PopoverBody>desravines1100@yahoo.com</PopoverBody>
-										</Popover>
-									</div>
+						</div>
+						<div className="col-sm-6 pr-0">
+							<div className="card">
+								<div className="card-body">
+									<h5 className="card-title">Contact Us</h5>
+									<p className="card-text">Want to get in touch with us? Cick below.</p>
+									<Button id="Popover1" type="button">
+										Email Us!
+									</Button>
+									<Popover
+										placement="bottom"
+										isOpen={this.state.popoverOpen}
+										target="Popover1"
+										toggle={this.toggle}>
+										<PopoverHeader>Email questions to</PopoverHeader>
+										<PopoverBody>desravines1100@yahoo.com</PopoverBody>
+									</Popover>
 								</div>
 							</div>
 						</div>
