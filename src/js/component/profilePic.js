@@ -167,9 +167,6 @@ export class ProfilePic extends React.Component {
 									</div>
 								</div>
 							</div>
-							<center>
-								<strong>Powered by </strong>
-							</center>
 						</React.Fragment>
 					);
 				}}

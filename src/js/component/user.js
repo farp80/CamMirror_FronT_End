@@ -91,6 +91,11 @@ export class User extends React.Component {
 								}>
 								Submit
 							</Button>
+							<Link to="/profilePic">
+								<div>
+									<a href="#"> {"Go Back Home"}</a>
+								</div>
+							</Link>
 						</div>
 					);
 				}}

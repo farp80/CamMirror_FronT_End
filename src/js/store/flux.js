@@ -3,6 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	const raspberry_ip = process.env.RASPBERRYIP;
 	return {
 		store: {
+			profile_code: null,
 			token: null,
 			currentUserId: null,
 			profile: {
@@ -15,8 +16,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				updatedDate: null,
 				cloudinary_folder: null,
 				cloudinary_url: null,
-				profile_pic_settings: null,
-				membership_name: null
+				membership_name: null,
+				card_holder_name: null,
+				card_number: null,
+				card_expiration_date: null,
+				card_cvv: null,
+				profile_pic_settings: null
 			}
 		},
 		actions: {
@@ -62,9 +67,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return response.json();
 						})
 						.then(data => {
+							console.log(" NEW FN: " + data.first_name);
 							let store = getStore();
 							let profile = store.profile;
-
 							profile.first_name = data.first_name;
 							profile.last_name = data.last_name;
 							profile.email = data.email;
@@ -76,14 +81,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(" You need to Login first.");
 				}
 			},
-			createMembership: (membership_name, currentUserId, history) => {
+			createMembership: (
+				membership_name,
+				card_holder_name,
+				card_number,
+				card_expiration_month,
+				card_expiration_year,
+				card_cvv,
+				history
+			) => {
 				let store = getStore();
 				let settings = {
 					membership_name: membership_name,
+					card_holder_name: card_holder_name,
+					card_number: card_number,
+					card_expiration_date: card_expiration_month + "/" + card_expiration_year,
+					card_cvv: card_cvv,
 					user_id: store.currentUserId
 				};
-				console.log("cefev", settings);
-				console.log("###", membership_name);
+				// console.log("cefev", settings);
+				// console.log("###", membership_name);
 
 				fetch(backend_url + "/membership", {
 					method: "POST",
@@ -100,9 +117,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
-							history.push("/profilePic");
 						}
+					});
+				fetch(backend_url + "/membership")
+					.then(resp => resp.json())
+					.then(data => {
+						let store = this.state.store;
+						setStore({ profile: data });
+						history.push("/profilePic");
 					})
+
 					.catch(error => {
 						console.log(error);
 					});
@@ -221,9 +245,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 							store: store
 						});
 					})
+					// .then(() => {
+					// 	fetch(backend_url + "/profile/" + store.currentUserId);
+					// })
+					// .then(response => response.json())
+					// .then(data => {
+					// 	let store = getStore();
+					// 	console.log(" CODE: " + data.code);
+					// 	store.profile_code = data.code;
+					// 	setStore({ store: store });
+					// })
 					.then(async () => {
 						let store = getStore();
-						// TODO Fix this. Do a GET first, check if the profile exist, then add or not.
+						//TODO fix the get and post. If it is on the Table then update
+						const codeAsInteger = parseInt(store.profile_code);
+
+						//if (codeAsInteger === 100) {
+						console.log(" NO MORE ADDITION");
 						const resp = await fetch(backend_url + "/profile", {
 							method: "POST",
 							body: JSON.stringify({
@@ -234,11 +272,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 								authorization: "Bearer " + store.token
 							}
 						});
+
 						if (resp.status === 200) {
 							return resp.json();
 						} else {
 							throw new Error("Incorrect Profile usage");
 						}
+						//}
 					})
 					.then(data => {
 						let store = getStore();
