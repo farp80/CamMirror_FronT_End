@@ -63,12 +63,26 @@ export class User extends React.Component {
 									name="membership"
 									id="membership"
 									onChange={this.onChangeMembership}>
+									<option selected>-select-</option>
 									<option>Bronze</option>
 									<option>Gold</option>
-									<option selected>Platinum</option>
+									<option>Platinum</option>
 								</Input>
 							</FormGroup>
-							<Button>Submit</Button>
+							<Button
+								color="primary"
+								onClick={() =>
+									actions.updateProfile(
+										this.state.firstName,
+										this.state.lastName,
+										this.state.email,
+										this.state.password,
+										this.state.membership,
+										this.props.history
+									)
+								}>
+								Submit
+							</Button>
 						</div>
 					);
 				}}
@@ -77,10 +91,8 @@ export class User extends React.Component {
 	}
 }
 
-// User.propTypes = {
-// 	anyProp: PropTypes.any,
-// 	history: PropTypes.object,
-// 	match: PropTypes.object,
-// 	isLoggedIn: PropTypes.object,
-// 	clickFunc: PropTypes.func
-// };mmmm
+User.propTypes = {
+	anyProp: PropTypes.any,
+	history: PropTypes.object,
+	match: PropTypes.object
+};

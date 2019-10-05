@@ -39,7 +39,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//console.log(error);
 				});
 			},
-			updateProfile: (first_name, last_name, email, password) => {
+			updateProfile: (first_name, last_name, email, password, membership, history) => {
+				console.log(" ## " + first_name + " " + last_name + " " + email + " " + password + " " + membership);
 				fetch(backend_url + "/profile/" + store.currentUserId, {
 					method: "PUT",
 					headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token },
