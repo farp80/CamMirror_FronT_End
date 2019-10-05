@@ -12,62 +12,64 @@ export class Navbar extends React.Component {
 	}
 	render() {
 		return (
-			<nav className="navbar navbar-dark bg-dark mb-3">
-				<Link to="/">
-					<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
-				</Link>
-
-				<div className="ml-auto">
-					<Link to="/about">
-						<span className="navbar-brand ml-3 mb-0 h1">About Us</span>
+			<React.Fragment>
+				<nav className="navbar navbar-dark bg-dark mb-3">
+					<Link to="/">
+						<h1>Cam Mirror</h1>
 					</Link>
 
-					<Context.Consumer>
-						{({ store, actions }) => {
-							{
-								if (store.token === null) {
-									return (
-										<Link to="/login">
-											<button type="button" className="btn1 btn-primary btn-sm form-control">
-												                                                                                                                                        Login
-												<i className="fas fa-lock mr-1" />
-											</button>
-										</Link>
-									);
-								} else {
-									return (
-										<Link to="/">
-											<button
-												onClick={() => actions.logOut()}
-												type="button"
-												className="btn btn-dark">
-												                                                                                                                                Logout
-												<i className="fas fa-sign-out-alt" />
-											</button>
-										</Link>
-									);
-								}
-							}
-						}}
-					</Context.Consumer>
+					<div className="form-inline ">
+						<Link to="/about">
+							<span className="navbar-brand ml-3 mb-0 h1">About Us</span>
+						</Link>
 
-					<Context.Consumer>
-						{({ store, actions }) => {
-							{
-								if (store.token === null) {
-									return <div />;
-								} else {
-									return (
-										<Link to="/membership">
-											<span className="navbar-brand ml-3 mb-0 h1">Start Membership</span>
-										</Link>
-									);
+						<Context.Consumer>
+							{({ store, actions }) => {
+								{
+									if (store.token === null) {
+										return (
+											<Link to="/login">
+												<button typy="button" className="btn1 btn-primary btn-sm form-control">
+													<i className="fas fa-lock mr-1" />
+													Login
+												</button>
+											</Link>
+										);
+									} else {
+										return (
+											<Link to="/">
+												<button
+													onClick={() => actions.logOut()}
+													type="button"
+													className="btn btn-dark">
+													<i className="fas fa-sign-out-alt" />
+													Logout
+												</button>
+											</Link>
+										);
+									}
 								}
-							}
-						}}
-					</Context.Consumer>
-				</div>
-			</nav>
+							}}
+						</Context.Consumer>
+
+						<Context.Consumer>
+							{({ store, actions }) => {
+								{
+									if (store.token === null) {
+										return <div />;
+									} else {
+										return (
+											<Link to="/membership">
+												<span className="navbar-brand ml-3 mb-0 hi">Start Membership</span>
+											</Link>
+										);
+									}
+								}
+							}}
+						</Context.Consumer>
+					</div>
+				</nav>
+			</React.Fragment>
 		);
 	}
 }

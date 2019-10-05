@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar";
+import PropTypes from "prop-types";
 import "../../styles/home.scss";
 
 export class Membership extends React.Component {
@@ -21,7 +22,7 @@ export class Membership extends React.Component {
 								<div className="row col-12">
 									<div className="membership-benefits mt-5 mb-5">
 										<h1>
-											As a member you will enjoy full access to Mirror Me with benefits listed
+											As a member you will enjoy full access to Cam Mirror with benefits listed
 											below
 										</h1>
 										<ul>
@@ -80,6 +81,7 @@ export class Membership extends React.Component {
 									<select
 										onChange={e => this.setState({ membership_name: e.target.value })}
 										className="input-block-level">
+										<option />
 										<option>Bronze</option>
 										<option>Gold</option>
 										<option>Platinum</option>
@@ -184,3 +186,6 @@ export class Membership extends React.Component {
 		);
 	}
 }
+Membership.propTypes = {
+	history: PropTypes.object
+};

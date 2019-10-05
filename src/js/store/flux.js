@@ -62,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						//console.log(error);
 					});
 			},
-			createMembership: (membership_name, history, currentUserId) => {
+			createMembership: (membership_name, currentUserId, history) => {
 				let store = getStore();
 				let settings = {
 					membership_name: membership_name,
@@ -88,7 +88,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ errorStatus: data.msg });
 							history.push("/profilePic");
 						}
-						//console.log("cefev" + data);
 					})
 					.catch(error => {
 						console.log(error);
