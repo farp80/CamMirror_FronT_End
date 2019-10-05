@@ -80,7 +80,7 @@ export class ProfilePic extends React.Component {
 												</Link>
 											</div>
 											<div className="col-md-3">
-												<button type="button" className="btn btn-danger btn-sm">
+												<button type="button" className="btn btn-success btn-sm">
 													Profile Pic
 												</button>
 											</div>
@@ -92,7 +92,7 @@ export class ProfilePic extends React.Component {
 													<li>
 														<button
 															type="button"
-															className="btn btn-outline-warning btn-sm">
+															className="btn btn-outline-primary btn-sm">
 															<i className="fas fa-users-cog" />
 															<Link to="/user"> Settings</Link>
 														</button>
@@ -108,9 +108,7 @@ export class ProfilePic extends React.Component {
 											<div className="container">
 												<div className="jumbotronb jumbotron-fluid">
 													<div className="container">
-														<h1 className="display-4 text-center">
-															{"Welcome! " /*+ profile.first_name*/}
-														</h1>
+														<h1 className="display-4 text-center">{"Welcome!"}</h1>
 														<p className="lead text-center">
 															{"This is a where perfect selfies are made."}
 														</p>
@@ -149,9 +147,6 @@ export class ProfilePic extends React.Component {
 														<div className="card">
 															<div className="card-body">
 																<h5 className="card-title">Activate Voice control!</h5>
-																{/* <p className="card-text">
-																	Want to link your voice control?
-																</p> */}
 																<Button id="Popover1" className="btn btn-success">
 																	<i className="fas fa-microphone-alt" />
 																</Button>

@@ -5,7 +5,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			currentUserId: null,
-			membership_name: null,
 			profile: {
 				first_name: null,
 				last_name: null,
@@ -16,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				updatedDate: null,
 				cloudinary_folder: null,
 				cloudinary_url: null,
-				profile_pic_settings: null
+				profile_pic_settings: null,
+				membership_name: null
 			}
 		},
 		actions: {
@@ -26,9 +26,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			isButtonEnabled: (first_name, last_name, email, password) => {
 				return first_name === "" || last_name === "" || email === "" || password === "";
 			},
-			deleteProfile: currentUserId => {
+			deleteProfile: () => {
+				// TODO Fix body
 				fetch(
-					backend_url + "/profile/" + store.currentUserId,
+					backend_url + "/profile",
 					{
 						method: "DELETE",
 						headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token }
@@ -36,31 +37,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 						history.push("/");
 					})
 				).catch(error => {
-					//console.log(error);
+					console.log(error);
 				});
 			},
-			updateProfile: (first_name, last_name, email, password, membership, history) => {
-				console.log(" ## " + first_name + " " + last_name + " " + email + " " + password + " " + membership);
-				fetch(backend_url + "/profile/" + store.currentUserId, {
-					method: "PUT",
-					headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token },
-					body: JSON.stringify({
-						first_name: first_name,
-						last_name: last_name,
-						email: email,
-						password: password
+			updateProfile: (first_name, last_name, email, password, history) => {
+				let store = getStore();
+
+				if (store.currentUserId !== null) {
+					fetch(backend_url + "/profile", {
+						method: "PUT",
+						headers: {
+							"Content-Type": "Application/json",
+							authorization: "Bearer " + store.token
+						},
+						body: JSON.stringify({
+							first_name: first_name,
+							last_name: last_name,
+							email: email,
+							password: password,
+							user_id: store.currentUserId
+						})
 					})
-				});
-				fetch(backend_url + "/profile/" + store.currentUserId)
-					.then(resp => resp.json())
-					.then(data => {
-						let store = this.state.store;
-						setStore({ token: data.jwt });
-						history.push("/profile/" + store.currentUserId);
-					})
-					.catch(error => {
-						//console.log(error);
-					});
+						.then(response => {
+							return response.json();
+						})
+						.then(data => {
+							console.log(" NEW FN: " + data.first_name);
+							let store = getStore();
+							let profile = store.profile;
+							profile.first_name = data.first_name;
+							profile.last_name = data.last_name;
+							profile.email = data.email;
+							profile.updatedDate = data.updated_date;
+							setStore({ profile: profile });
+							history.push("/profilePic");
+						});
+				} else {
+					console.log(" You need to Login first.");
+				}
 			},
 			createMembership: (membership_name, currentUserId, history) => {
 				let store = getStore();
@@ -199,7 +213,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
 						}
-						setStore({ token: data.jwt, currentUserId: data.id, email: data.email });
+						let store = getStore();
+						store.token = data.jwt;
+						store.currentUserId = data.id;
+						store.profile.email = data.email;
+						setStore({
+							store: store
+						});
 					})
 					.then(async () => {
 						let store = getStore();
