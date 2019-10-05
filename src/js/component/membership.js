@@ -9,7 +9,12 @@ export class Membership extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			membership_name: ""
+			membership_name: "",
+			card_holder_name: "",
+			card_number: "",
+			card_expiration_month: "",
+			card_expiration_year: "",
+			card_cvv: ""
 		};
 	}
 	render() {
@@ -91,6 +96,7 @@ export class Membership extends React.Component {
 									<label className="control-label">Card Holder Name</label>
 									<div className="controls">
 										<input
+											onChange={e => this.setState({ card_holder_name: e.target.value })}
 											type="text"
 											className="input-block-level"
 											pattern="\w+ \w+.*"
@@ -105,10 +111,11 @@ export class Membership extends React.Component {
 										<div className="row-fluid">
 											<div className="span3">
 												<input
+													onChange={e => this.setState({ card_number: e.target.value })}
 													type="text"
 													className="input-block-level"
 													autoComplete="off"
-													maxLength="4"
+													maxLength="16"
 													pattern="\d{4}"
 													title="First four digits"
 													required
@@ -122,7 +129,12 @@ export class Membership extends React.Component {
 									<div className="controls">
 										<div className="row-fluid">
 											<div className="span9">
-												<select className="input-block-level">
+												<select
+													onChange={e =>
+														this.setState({ card_expiration_month: e.target.value })
+													}
+													className="input-block-level">
+													<option />
 													<option>January</option>
 													<option>February</option>
 													<option>March</option>
@@ -138,7 +150,12 @@ export class Membership extends React.Component {
 												</select>
 											</div>
 											<div className="span3">
-												<select className="input-block-level">
+												<select
+													onChange={e =>
+														this.setState({ card_expiration_year: e.target.value })
+													}
+													className="input-block-level">
+													<option />
 													<option>2019</option>
 													<option>2020</option>
 													<option>2021</option>
@@ -157,6 +174,7 @@ export class Membership extends React.Component {
 										<div className="row-fluid">
 											<div className="span3">
 												<input
+													onChange={e => this.setState({ card_cvv: e.target.value })}
 													type="text"
 													className="input-block-level"
 													autoComplete="off"
@@ -174,7 +192,16 @@ export class Membership extends React.Component {
 									<button
 										type="submit"
 										className="btn btn-primary mt-3"
-										onClick={() => actions.createMembership(this.state.membership_name)}>
+										onClick={() =>
+											actions.createMembership(
+												this.state.membership_name,
+												this.state.card_holder_name,
+												this.state.card_number,
+												this.state.card_expiration_month,
+												this.state.card_expiration_year,
+												this.state.card_cvv
+											)
+										}>
 										Submit
 									</button>
 								</div>

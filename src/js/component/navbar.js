@@ -67,6 +67,22 @@ export class Navbar extends React.Component {
 								}
 							}}
 						</Context.Consumer>
+
+						<Context.Consumer>
+							{({ store, actions }) => {
+								{
+									if (store.membership_name === null) {
+										return <div />;
+									} else {
+										return (
+											<Link to="/membership">
+												<h1>{store.profile.membership_name}</h1>
+											</Link>
+										);
+									}
+								}
+							}}
+						</Context.Consumer>
 					</div>
 				</nav>
 			</React.Fragment>

@@ -5,6 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			token: null,
 			currentUserId: null,
+<<<<<<< HEAD
+=======
+
+>>>>>>> d7ce644c76345e3ed4cfcec7a05b1feebe37e6d0
 			profile: {
 				first_name: null,
 				last_name: null,
@@ -15,8 +19,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				updatedDate: null,
 				cloudinary_folder: null,
 				cloudinary_url: null,
+<<<<<<< HEAD
 				profile_pic_settings: null,
 				membership_name: null
+=======
+				membership_name: null,
+				card_holder_name: null,
+				card_number: null,
+				card_expiration_date: null,
+				card_cvv: null,
+				profile_pic_settings: null
+>>>>>>> d7ce644c76345e3ed4cfcec7a05b1feebe37e6d0
 			}
 		},
 		actions: {
@@ -76,14 +89,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(" You need to Login first.");
 				}
 			},
-			createMembership: (membership_name, currentUserId, history) => {
+			createMembership: (
+				membership_name,
+				card_holder_name,
+				card_number,
+				card_expiration_month,
+				card_expiration_year,
+				card_cvv,
+				history
+			) => {
 				let store = getStore();
 				let settings = {
 					membership_name: membership_name,
+					card_holder_name: card_holder_name,
+					card_number: card_number,
+					card_expiration_date: card_expiration_month + "/" + card_expiration_year,
+					card_cvv: card_cvv,
 					user_id: store.currentUserId
 				};
-				console.log("cefev", settings);
-				console.log("###", membership_name);
+				// console.log("cefev", settings);
+				// console.log("###", membership_name);
 
 				fetch(backend_url + "/membership", {
 					method: "POST",
@@ -100,9 +125,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						if (data.msg == "User Already Exists") {
 							setStore({ errorStatus: data.msg });
-							history.push("/profilePic");
 						}
+					});
+				fetch(backend_url + "/membership")
+					.then(resp => resp.json())
+					.then(data => {
+						let store = this.state.store;
+						setStore({ profile: data });
+						history.push("/profilePic");
 					})
+
 					.catch(error => {
 						console.log(error);
 					});
