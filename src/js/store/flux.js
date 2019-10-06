@@ -81,6 +81,71 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(" You need to Login first.");
 				}
 			},
+
+			updateMembership: (
+				membership_name,
+				card_holder_name,
+				card_number,
+				card_expiration_month,
+				card_expiration_year,
+				card_cvv,
+				history
+			) => {
+				let store = getStore();
+
+				{
+					fetch(backend_url + "/membership", {
+						method: "PUT",
+						headers: {
+							"Content-Type": "Application/json",
+							authorization: "Bearer " + store.token
+						},
+						body: JSON.stringify({
+							membership_name: membership_name,
+							card_holder_name: card_holder_name,
+							card_number: card_number,
+							card_expiration_date: card_expiration_month + "/" + card_expiration_year,
+							card_cvv: card_cvv,
+							user_id: store.currentUserId
+						})
+					})
+						.then(response => {
+							return response.json();
+						})
+						.then(data => {
+							let store = getStore();
+							let profile = store.profile;
+							profile.membership_name = data.membership_name;
+							profile.card_holder_name = data.card_holder_name;
+							profile.card_number = data.card_number;
+							profile.card_expiration_date = data.card_expiration_date;
+							profile.card_cvv = data.card_cvv;
+							profile.updatedDate = data.updated_date;
+
+							setStore({ profile: profile });
+							history.push("/profilePic");
+						});
+				}
+			},
+
+			deleteMembership: history => {
+				let store = getStore();
+				fetch(
+					backend_url + "/membership",
+					{
+						method: "DELETE",
+						headers: { "Content-Type": "Application/json", authorization: "Bearer " + store.token }
+					}.then(data => {
+						console.log("its being deleted");
+						let store = this.state.store;
+						setStore({ profile: profile });
+						history.push("/profilePic");
+					})
+				).catch(error => {
+					console.log(error);
+				});
+			},
+
 			createMembership: (
 				membership_name,
 				card_holder_name,
@@ -123,7 +188,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(resp => resp.json())
 					.then(data => {
 						let store = this.state.store;
-						setStore({ profile: data });
+						setStore({ profile: profile });
 						history.push("/profilePic");
 					})
 
