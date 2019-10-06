@@ -67,13 +67,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 							return response.json();
 						})
 						.then(data => {
-							console.log(" NEW FN: " + data.first_name);
 							let store = getStore();
 							let profile = store.profile;
 							profile.first_name = data.first_name;
 							profile.last_name = data.last_name;
 							profile.email = data.email;
 							profile.updatedDate = data.updated_date;
+
 							setStore({ profile: profile });
 							history.push("/profilePic");
 						});
@@ -245,23 +245,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							store: store
 						});
 					})
-					// .then(() => {
-					// 	fetch(backend_url + "/profile/" + store.currentUserId);
-					// })
-					// .then(response => response.json())
-					// .then(data => {
-					// 	let store = getStore();
-					// 	console.log(" CODE: " + data.code);
-					// 	store.profile_code = data.code;
-					// 	setStore({ store: store });
-					// })
 					.then(async () => {
 						let store = getStore();
-						//TODO fix the get and post. If it is on the Table then update
-						const codeAsInteger = parseInt(store.profile_code);
-
-						//if (codeAsInteger === 100) {
-						console.log(" NO MORE ADDITION");
 						const resp = await fetch(backend_url + "/profile", {
 							method: "POST",
 							body: JSON.stringify({
@@ -278,7 +263,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						} else {
 							throw new Error("Incorrect Profile usage");
 						}
-						//}
 					})
 					.then(data => {
 						let store = getStore();
@@ -288,6 +272,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						profile.last_name = data.last_name;
 						profile.createdDate = data.created_date;
 						profile.currentUserId = data.currentUserId;
+						profile.updatedDate = data.updated_date;
 
 						setStore({ profile: profile });
 						history.push("/profilePic");
