@@ -21,9 +21,11 @@ export class Gallery extends React.Component {
 					const profile = store.profile;
 					return (
 						<React.Fragment>
-							<Link to="/profilePic">
-								<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
-							</Link>
+							<div className="container">
+								<i className="far fa-folder">
+									<a href="#"> Hoy</a>
+								</i>
+							</div>
 						</React.Fragment>
 					);
 				}}

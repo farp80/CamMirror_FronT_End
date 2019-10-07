@@ -6,16 +6,8 @@ import "../../styles/profile.scss";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Avatar from "react-avatar-edit";
-/*import Konva from "konva/lib/Core";
-import { Rect } from "konva/lib/shapes/Rect";
-import { Circle } from "konva/lib/shapes/Circle";
-import { Image } from "konva/lib/shapes/Image";
-import { Path } from "konva/lib/shapes/Path";
-import { DragAndDrop } from "konva/lib/DragAndDrop";
-import { Animation } from "konva/lib/Animation";*/
-
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
-//const profileImage = require("./images/user-profile.jpg");
+
 export class ProfilePic extends React.Component {
 	constructor(props) {
 		super(props);

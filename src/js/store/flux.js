@@ -352,10 +352,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(backend_url + "/picture/" + store.currentUserId)
 					.then(response => response.json())
 					.then(data => {
+						let f = data.forEach((value, index) => {
+							console.log(" VALUE: " + index);
+						});
 						currentprofile.profile_pic_settings = data;
 						setStore({ profile: currentprofile });
 					});
-			}
+			},
+			getUniqueFolders: data => {}
 		}
 	};
 };

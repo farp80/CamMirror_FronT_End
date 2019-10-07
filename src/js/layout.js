@@ -9,8 +9,6 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
-
-import { Profile } from "./component/profile";
 import { Gallery } from "./component/gallery";
 import { ProfilePic } from "./component/profilePic";
 import { User } from "./component/user";
@@ -34,7 +32,6 @@ export class Layout extends React.Component {
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/gallery" component={Gallery} />
-							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/profilePic" component={ProfilePic} />
 							<Route exact path="/user" component={User} />
 							<Route exact path="/about" component={About} />
