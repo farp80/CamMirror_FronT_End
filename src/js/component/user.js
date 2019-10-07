@@ -50,15 +50,13 @@ export class User extends React.Component {
 			<Context.Consumer>
 				{({ store, actions }) => {
 					return (
-						<div className="contianer">
+						<div className="container">
 							<div className="row">
 								<div className="col-6">
-									<h1>Update Profile</h1>
-
+									<h1>Profile</h1>
 									<div className="container user-settings-width">
 										<FormGroup>
 											<Label for="firstName">First Name</Label>
-
 											<Input
 												type="text"
 												name="firstName"
@@ -67,10 +65,8 @@ export class User extends React.Component {
 												defaultValue={store.profile.first_name}
 											/>
 										</FormGroup>
-
 										<FormGroup>
 											<Label for="lastName">Last Name</Label>
-
 											<Input
 												type="text"
 												name="lastName"
@@ -79,10 +75,8 @@ export class User extends React.Component {
 												defaultValue={store.profile.last_name}
 											/>
 										</FormGroup>
-
 										<FormGroup>
 											<Label for="email">Email</Label>
-
 											<Input
 												type="email"
 												name="email"
@@ -91,10 +85,8 @@ export class User extends React.Component {
 												defaultValue={store.profile.email}
 											/>
 										</FormGroup>
-
 										<FormGroup>
 											<Label for="password">Password</Label>
-
 											<Input
 												type="password"
 												name="password"
@@ -103,7 +95,6 @@ export class User extends React.Component {
 												defaultValue={store.profile.password}
 											/>
 										</FormGroup>
-
 										<Button
 											color="primary"
 											onClick={() =>
@@ -121,179 +112,142 @@ export class User extends React.Component {
 													this.props.history
 												)
 											}>
-											                                        Submit
+											Update
 										</Button>
-
 										<Link to="/profilePic">
 											<div>
-												<a href="#"> {"Go Back Home"}</a>
+												<a href="#"> {"Go to Profile"}</a>
 											</div>
 										</Link>
 									</div>
 								</div>
 
 								<div className="col-6">
-									<h1>Update Membership</h1>
+									<h1>Membership</h1>
+									<FormGroup>
+										<Label for="lastName">Card Holder Name</Label>
+										<Input
+											type="text"
+											name="cardHolderName"
+											id="cardHolderName"
+											onChange={this.onChangeCardHolderName}
+											defaultValue={store.profile.card_holder_name}
+										/>
+									</FormGroup>
+									<FormGroup>
+										<Label for="email">Card Number</Label>
+										<Input
+											type="text"
+											name="cardNumber"
+											id="cardNumber"
+											onChange={this.onChangeCardNumber}
+											defaultValue={store.profile.card_number}
+										/>
+									</FormGroup>
+									<FormGroup>
+										<Label for="password">Card CVV</Label>
+										<Input
+											type="text"
+											name="cardCvv"
+											id="cardCvv"
+											onChange={this.onChangeCardCvv}
+											defaultValue={store.profile.card_cvv}
+										/>
+									</FormGroup>
+									<FormGroup>
+										<Label for="membership">Membership Type</Label>
+										<Input
+											type="select"
+											name="membership"
+											id="membership_type"
+											onChange={this.onChangeMembershipName}
+											defaultValue={store.profile.membership_name}>
+											<option selected>--select--</option>
+											<option>Bronze</option>
+											<option>Gold</option>
+											<option>Platinum</option>
+										</Input>
+									</FormGroup>
+									<FormGroup>
+										<Label for="expirationDate">Expiration Month</Label>
+										<Input
+											type="select"
+											name="ExpirationDateOptions"
+											id="expirationDate"
+											onChange={this.onChangeCardExpirationMonth}
+											defaultValue={store.profile.card_expiration_date}>
+											<option selected>--select--</option>
+											<option>January</option>
+											<option>February</option>
+											<option>March</option>
+											<option>April</option>
+											<option>May</option>
+											<option>June</option>
+											<option>July</option>
+											<option>August</option>
+											<option>September</option>
+											<option>October</option>
+											<option>November</option>
+											<option>December</option>
+										</Input>
+									</FormGroup>
+									<FormGroup>
+										<Label for="expirationYear">Expiration Year</Label>
+										<Input
+											type="select"
+											name="ExpirationYearOptions"
+											id="expirationYear"
+											onChange={this.onChangeCardExpirationYear}
+											defaultValue={store.profile.card_expiration_date}>
+											<option selected>--select--</option>
+											<option>2019</option>
+											<option>2020</option>
+											<option>2021</option>
+											<option>2022</option>
+											<option>2023</option>
+											<option>2024</option>
+											<option>2025</option>
+											<option>2026</option>
+										</Input>
+									</FormGroup>
+									<Button
+										color="primary"
+										onClick={() =>
+											actions.updateMembership(
+												this.state.membership_name === null
+													? store.profile.membership_name
+													: this.state.membership_name,
 
-									<div className="container user-settings-width">
-										<div className="span9">
-											<label className="control-label">Select Membership</label>
+												this.state.card_holder_name === null
+													? store.profile.card_holder_name
+													: this.state.card_holder_name,
 
-											<select
-												onChange={this.onChangeMembershipName}
-												defaultValue={store.profile.membership_name}
-												className="input-block-level">
-												<option />
+												this.state.card_number === null
+													? store.profile.card_number
+													: this.state.card_number,
 
-												<option>Bronze</option>
+												this.state.card_expiration_month === null
+													? store.profile.card_expiration_date
+													: this.state.card_expiration_month,
 
-												<option>Gold</option>
+												this.state.card_expiration_year === null
+													? store.profile.card_expiration_date
+													: this.state.card_expiration_year,
 
-												<option>Platinum</option>
-											</select>
+												this.state.card_cvv === null
+													? store.profile.card_cvv
+													: this.state.card_cvv,
+
+												this.props.history
+											)
+										}>
+										Update
+									</Button>
+									<Link to="/profilePic">
+										<div>
+											<a href="#"> {"Go to Profile"}</a>
 										</div>
-
-										<FormGroup>
-											<Label for="lastName">Card Holder Name</Label>
-
-											<Input
-												type="text"
-												name="cardHolderName"
-												id="cardHolderName"
-												onChange={this.onChangeCardHolderName}
-												defaultValue={store.profile.card_holder_name}
-											/>
-										</FormGroup>
-
-										<FormGroup>
-											<Label for="email">Card Number</Label>
-
-											<Input
-												type="text"
-												name="cardNumber"
-												id="cardNumber"
-												onChange={this.onChangeCardNumber}
-												defaultValue={store.profile.card_number}
-											/>
-										</FormGroup>
-
-										<div className="control-group">
-											<label className="control-label">Card Expiration Date</label>
-
-											<div className="controls">
-												<div className="row-fluid">
-													<div className="span9">
-														<select
-															onChange={this.onChangeCardExpirationMonth}
-															defaultValue={store.profile.card_expiration_date}
-															className="input-block-level">
-															<option />
-
-															<option>January</option>
-
-															<option>February</option>
-
-															<option>March</option>
-
-															<option>April</option>
-
-															<option>May</option>
-
-															<option>June</option>
-
-															<option>July</option>
-
-															<option>August</option>
-
-															<option>September</option>
-
-															<option>October</option>
-
-															<option>November</option>
-
-															<option>December</option>
-														</select>
-													</div>
-
-													<div className="span3">
-														<select
-															onChange={this.onChangeCardExpirationYear}
-															defaultValue={store.profile.card_expiration_date}
-															className="input-block-level">
-															<option />
-
-															<option>2019</option>
-
-															<option>2020</option>
-
-															<option>2021</option>
-
-															<option>2022</option>
-
-															<option>2023</option>
-
-															<option>2024</option>
-
-															<option>2025</option>
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<FormGroup>
-											<Label for="password">Card CVV</Label>
-
-											<Input
-												type="text"
-												name="cardCvv"
-												id="cardCvv"
-												onChange={this.onChangeCardCvv}
-												defaultValue={store.profile.card_cvv}
-											/>
-										</FormGroup>
-
-										<Button
-											color="primary"
-											onClick={() =>
-												actions.updateMembership(
-													this.state.membership_name === null
-														? store.profile.membership_name
-														: this.state.membership_name,
-
-													this.state.card_holder_name === null
-														? store.profile.card_holder_name
-														: this.state.card_holder_name,
-
-													this.state.card_number === null
-														? store.profile.card_number
-														: this.state.card_number,
-
-													this.state.card_expiration_month === null
-														? store.profile.card_expiration_date
-														: this.state.card_expiration_month,
-
-													this.state.card_expiration_year === null
-														? store.profile.card_expiration_date
-														: this.state.card_expiration_year,
-
-													this.state.card_cvv === null
-														? store.profile.card_cvv
-														: this.state.card_cvv,
-
-													this.props.history
-												)
-											}>
-											                                            Update
-										</Button>
-
-										{/* <button
-                                            onClick={() => actions.deleteMembership()}
-                                            type="button"
-                                            className="btn btn-primary ml-3">
-                                            Delete Membership
-                                        </button> */}
-									</div>
+									</Link>
 								</div>
 							</div>
 						</div>

@@ -129,6 +129,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			deleteMembership: history => {
+				// TODO: For now, we do not need to do it.
 				let store = getStore();
 				fetch(
 					backend_url + "/membership",
@@ -164,8 +165,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					card_cvv: card_cvv,
 					user_id: store.currentUserId
 				};
-				// console.log("cefev", settings);
-				// console.log("###", membership_name);
 
 				fetch(backend_url + "/membership", {
 					method: "POST",
@@ -184,6 +183,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							setStore({ errorStatus: data.msg });
 						}
 					});
+				// TODO --> What are we doing here? [DO NOT DELETE THE COMMENTS]
 				fetch(backend_url + "/membership")
 					.then(resp => resp.json())
 					.then(data => {
@@ -352,11 +352,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(backend_url + "/picture/" + store.currentUserId)
 					.then(response => response.json())
 					.then(data => {
+						let f = data.forEach((value, index) => {
+							console.log(" VALUE: " + index);
+						});
 						currentprofile.profile_pic_settings = data;
 						console.log("data:", data);
 						setStore({ profile: currentprofile });
 					});
-			}
+			},
+			getUniqueFolders: data => {}
 		}
 	};
 };

@@ -11,7 +11,6 @@ export class About extends React.Component {
 				<div className="container about">
 					<div className="row col-12">
 						<h1 className="mb-5">Welcome to Cam Mirror</h1>
-
 						<p>
 							Are you tired of holding your phone in the mirror to take a picture? Do not want to deal
 							with those selfie sticks? Well you are in luck, We Are Cam Mirror!, and we solve your
