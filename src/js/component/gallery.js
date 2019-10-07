@@ -18,14 +18,13 @@ export class Gallery extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-					const profile = store.profile;
-					return (
-						<React.Fragment>
-							<Link to="/profilePic">
-								<img src="https://mirrorme.be/wp-content/uploads/2019/05/T1.png" className="mirrorme" />
-							</Link>
-						</React.Fragment>
-					);
+					{
+						if (store.profile.profile_pic_settings)
+							return store.profile.profile_pic_settings.map((item, index) => {
+								return <img src={item.url} key={index} />;
+							});
+						else return <div>Loading...</div>;
+					}
 				}}
 			</Context.Consumer>
 		);

@@ -353,6 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(response => response.json())
 					.then(data => {
 						currentprofile.profile_pic_settings = data;
+						console.log("data:", data);
 						setStore({ profile: currentprofile });
 					});
 			}
