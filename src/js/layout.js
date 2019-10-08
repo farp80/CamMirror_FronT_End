@@ -10,7 +10,7 @@ import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
 
-import { Logo } from "../img/camlogo.jpg";
+import { Logo } from "../img/camlogos.jpg";
 
 import { Gallery } from "./component/gallery";
 import { ProfilePic } from "./component/profilePic";

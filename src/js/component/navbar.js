@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
-import { logo } from "../../img/camlogo.jpg";
-
+import logo from "../../img/camlogos.jpg";
+import "../../styles/profile.scss";
 import PropTypes from "prop-types";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -18,7 +18,9 @@ export class Navbar extends React.Component {
 			<React.Fragment>
 				<nav className="navbar navbar-dark bg-dark mb-3">
 					<Link to="/">
-						<img src={logo} />
+						<p>
+							<img src={logo} />
+						</p>
 					</Link>
 
 					<div className="form-inline ">
