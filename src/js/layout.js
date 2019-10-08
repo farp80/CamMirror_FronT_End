@@ -33,7 +33,7 @@ export class Layout extends React.Component {
 							<Route exact path="/membership" component={Membership} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/gallery" component={Gallery} />
-
+							<Route exact path="/single/:theid" component={Single} />
 							<Route exact path="/profilePic" component={ProfilePic} />
 							<Route exact path="/user" component={User} />
 							<Route exact path="/about" component={About} />

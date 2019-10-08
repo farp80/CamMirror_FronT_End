@@ -2,27 +2,40 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap";
+import "../../styles/profile.scss";
 
 export class Single extends React.Component {
 	render() {
 		return (
-			<div className="jumbotron">
-				<Context.Consumer>
-					{({ store }) => {
-						return (
-							<h1 className="display-4">
-								This will show the demo element: {store.demo[this.props.match.params.theid].title}
-							</h1>
-						);
-					}}
-				</Context.Consumer>
+			<div className="container container-scroll">
+				<div className="card-deck">
+					<Context.Consumer>
+						{({ store }) => {
+							let profile = store.profile;
+							// to find the selected folder Id
+							let folderId = this.props.match.params.theid;
+							let pictureFolderMapping = profile.unique_picture_mapping;
+							let currentFolder = pictureFolderMapping.find(x => x.id == folderId);
 
-				<hr className="my-4" />
+							// to get all the urls linked to that folder
+							let allPictureSettings = profile.profile_pic_settings;
+							let allUrls = allPictureSettings.filter(x => x.pic_folder === currentFolder.folder);
 
-				<Link to="/">
-					<span className="btn btn-primary btn-lg" href="#" role="button">
-						Back home
-					</span>
+							return allUrls.map((item, index) => {
+								return (
+									<div key={index}>
+										<Card key={index} style={{ width: 18 + "rem" }}>
+											<CardImg top width="50%" src={item.url} />
+										</Card>
+									</div>
+								);
+							});
+						}}
+					</Context.Consumer>
+				</div>
+				<Link to={"/profilePic"}>
+					<a href="#"> Back</a>
 				</Link>
 			</div>
 		);

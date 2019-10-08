@@ -112,3 +112,15 @@
   background: #fff;
   min-height: 460px;
 }
+
+.container-scroll{
+  background-color: #333;
+  overflow: scroll;
+  white-space: pre-wrap;
+}
+
+.card-deck{
+  display: flex;
+  width: 4000px;
+  height: 400px;
+}

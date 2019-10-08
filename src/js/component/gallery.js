@@ -1,5 +1,4 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
@@ -16,17 +15,26 @@ export class Gallery extends React.Component {
 
 	render() {
 		return (
-			<Context.Consumer>
-				{({ store, actions }) => {
-					{
-						if (store.profile.profile_pic_settings)
-							return store.profile.profile_pic_settings.map((item, index) => {
-								return <img src={item.url} key={index} />;
+			<div className="container">
+				<Context.Consumer>
+					{({ store, actions }) => {
+						{
+							let currentProfile = store.profile;
+							return currentProfile.unique_picture_mapping.map((item, index) => {
+								return (
+									<div className="row" key={item.id}>
+										<i className="far fa-folder" key={item.id}>
+											<Link to={"/single/" + item.id}>
+												<a href="#"> {item.folder}</a>
+											</Link>
+										</i>
+									</div>
+								);
 							});
-						else return <div>Loading...</div>;
-					}
-				}}
-			</Context.Consumer>
+						}
+					}}
+				</Context.Consumer>
+			</div>
 		);
 	}
 }

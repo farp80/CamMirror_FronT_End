@@ -21,7 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				card_number: null,
 				card_expiration_date: null,
 				card_cvv: null,
-				profile_pic_settings: null
+				profile_pic_settings: null,
+				unique_picture_mapping: []
 			}
 		},
 		actions: {
@@ -352,15 +353,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(backend_url + "/picture/" + store.currentUserId)
 					.then(response => response.json())
 					.then(data => {
-						let f = data.forEach((value, index) => {
-							console.log(" VALUE: " + index);
-						});
 						currentprofile.profile_pic_settings = data;
-						console.log("data:", data);
+
+						// iterate the currentprofile.unique_picture_mapping to check if the value
+						// is on the unique_picture_mapping array.
+						data.forEach((value, index) => {
+							if (currentprofile.unique_picture_mapping.length === 0) {
+								currentprofile.unique_picture_mapping.push({
+									id: index + 1,
+									folder: value.pic_folder
+								});
+							}
+
+							let d = currentprofile.unique_picture_mapping.findIndex(k => k.folder == value.pic_folder);
+
+							// if it exist in the unique_picture_mapping Array do not add it.
+							if (d === -1) {
+								currentprofile.unique_picture_mapping.push({
+									id: index + 1,
+									folder: data.pic_folder
+								});
+							}
+						});
+
 						setStore({ profile: currentprofile });
 					});
-			},
-			getUniqueFolders: data => {}
+			}
 		}
 	};
 };
