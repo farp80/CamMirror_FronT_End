@@ -10,6 +10,8 @@ import { Footer } from "./component/footer";
 import { Membership } from "./component/membership";
 import { Login } from "./component/login";
 
+import { Logo } from "../img/camlogo.jpg";
+
 import { Gallery } from "./component/gallery";
 import { ProfilePic } from "./component/profilePic";
 import { User } from "./component/user";
@@ -37,6 +39,7 @@ export class Layout extends React.Component {
 							<Route exact path="/profilePic" component={ProfilePic} />
 							<Route exact path="/user" component={User} />
 							<Route exact path="/about" component={About} />
+
 							<Route exact path="/signup" component={Signup} />
 							<Route render={() => <h1>Not found!</h1>} />
 						</Switch>

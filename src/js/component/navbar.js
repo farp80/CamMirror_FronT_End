@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import rigoImage from "../../img/rigo-baby.jpg";
+import { logo } from "../../img/camlogo.jpg";
+
 import PropTypes from "prop-types";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -15,7 +18,7 @@ export class Navbar extends React.Component {
 			<React.Fragment>
 				<nav className="navbar navbar-dark bg-dark mb-3">
 					<Link to="/">
-						<h1>Cam Mirror</h1>
+						<img src={logo} />
 					</Link>
 
 					<div className="form-inline ">
@@ -29,7 +32,7 @@ export class Navbar extends React.Component {
 									if (store.token === null) {
 										return (
 											<Link to="/login">
-												<button typy="button" className="btn1 btn-primary btn-sm form-control">
+												<button type="button" className="btn1 btn-primary btn-sm form-control">
 													<i className="fas fa-lock mr-1" />
 													Login
 												</button>
