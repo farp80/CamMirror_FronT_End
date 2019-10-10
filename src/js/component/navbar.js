@@ -18,7 +18,7 @@ export class Navbar extends React.Component {
 			<React.Fragment>
 				<nav className="navbar navbar-dark bg-dark mb-3">
 					<Link to="/">
-						<img src={logo} />
+						<img src={logo} width="253" height="89" />
 					</Link>
 
 					<div className="form-inline ">
