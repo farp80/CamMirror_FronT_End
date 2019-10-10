@@ -265,7 +265,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 									user_id: store.currentUserId,
 									folder: urlSplitted[8],
 									url: data.result.secure_url,
-									update_date: new Date(),
+									updated_date: new Date(),
 									date: new Date(urlSplitted[8])
 								}),
 								headers: {
@@ -369,6 +369,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 							// if it exist in the unique_picture_mapping Array do not add it.
 							if (d === -1) {
+								console.log("####");
 								currentprofile.unique_picture_mapping.push({
 									id: index + 1,
 									folder: data.pic_folder
